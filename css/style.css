@@ -1,0 +1,11 @@
+@import 'login.css';
+@import 'topbar.css';
+@import 'navbar.css';
+@import 'view.css';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

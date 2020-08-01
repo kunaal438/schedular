@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedular App</title>
+
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    
+    <!-- login Page -->
+
+        <div class="login-page">
+            <div class="form">
+                <h5 class="loginHeader">Login</h5>
+                <div class="form-inputs">
+                    <span class="error-message" id="log-email-err"></span>
+                    <label for="loginemail">email</label>
+                    <input type="email" id="loginemail">
+                </div>
+                <div class="form-inputs">
+                    <label for="loginpassword">password</label>
+                    <input type="password" id="loginpassword">
+                </div>
+                <button class="submitLoginBtn">Login</button>
+
+                <a class="registerLink">register</a>
+            </div>
+        </div>
+
+    <!-- end of login page -->
+
+    <!-- register Page -->
+
+    <div class="register-page">
+        <div class="form">
+            <h5 class="registerHeader">register</h5>
+            <div class="form-inputs">
+                <label for="username">username</label>
+                <span class="error-message" id="username-err"></span>
+                <input type="text" id="username">
+            </div>
+            <div class="form-inputs">
+                <label for="registeremail">email</label>
+                <span class="error-message" id="email-err"></span>
+                <input type="email" id="registeremail">
+            </div>
+            <div class="form-inputs">
+                <label for="registerpassword">password</label>
+                <span class="error-message" id="password-err"></span>
+                <input type="password" id="registerpassword">
+            </div>
+            <button class="submitregisterBtn">register</button>
+
+            <a class="loginLink">login</a>
+        </div>
+    </div>
+
+    <!-- end of register page -->
+
+    <!-- main page start -->
+
+    <div class="topbar">
+        <h5 class="currentRoute">Home</h5>
+        <div class="user-info">
+        </div>
+
+        <div class="check-form">
+            <img class="back-btn" src="img/back.png" alt="back btn icon">
+            <p class="form-title">notes</p>
+            <img src="img/check.png" alt="check icon" class="tick">
+        </div>
+    </div>
+    <h1 class="add-btn">+</h1>
+    <div class="add-overlay display"></div>
+    <div class="add-options display">
+        <h6 class="notes-link-for-form">notes</h6>
+        <h6 class="schedule-link-for-form">schedules</h6>
+        <h6 class="project-link-for-form">projects</h6>
+    </div>
+    <div class="account-overlay display"></div>
+    <div class="account-box display">
+        <h6>setting</h6>
+        <h6>sign out</h6>
+    </div>
+
+    <!-- for empyt box -->
+    <div class="view">
+        <div class="empty-view">
+            <div class="empty-div">
+                <img src="img/empty-icon.png" alt="flying rocket">
+                <h4>empty inbox</h4>
+            </div>
+        </div>
+
+        <div class="notes-form">
+
+            <textarea class="notes-area"></textarea>
+
+        </div>
+
+        <div class="schedule-form">
+
+            <div class="form">
+                <label for="schedule">schedule</label>
+                <textarea id="schedule"></textarea>
+
+                <label for="timing">timing</label>
+                <input type="text" class="datepicker" id="schedule-date" value="Aug 01, 2020" id="timing">
+                <input type="text" class="timepicker" id="schedule-time" value="06:35 PM" placeholder="time">
+
+            </div>
+
+        </div>
+
+        <div class="project-form">
+            <div class="form">
+                <label for="title">Project title</label>
+                <input type="text" id="title">
+
+                <label for="description">project description</label>
+                <textarea id="description"></textarea>
+                <label for="date">deadline</label>
+                <input type="text" class="datepicker" value="" id="date">
+            </div>
+        </div>
+
+        <div class="home-view">
+            <h5 class="note-title">Notes..</h5>
+            <div class="notes">
+                <p>here is going to display notesssss</p>
+            </div>
+            <div class="notes">
+                <p>here is going to display notesssss</p>
+            </div>
+            <a class="notes-link">more</a>
+            <h5 class="schedule-title">schedules..</h5>
+            <div class="schedule">
+                <p>meeting at 12pm</p>
+            </div>
+            <div class="schedule">
+                <p>here is going to display notesssss</p>
+            </div>
+            <a class="schedule-link">more</a>
+            <h5 class="project-title">projects..</h5>
+            <div class="project-box">
+                <h5 class="project-name">whatsapp  clone</h5>
+                <p class="project-info">project information shows here... related 
+                    to project...
+                    like for example it is a whatsapp clone in this project is for making the clone of whatsapp to chat with other with all features of whatsapp image sharing and video chat etc............</p>
+                <img src="img/delete-icon.png" alt="delete icon" class="delete-icon">
+                <p class="last-date">last date-  2 dec 2020</p>
+            </div>
+            <a class="project-link">more</a>            
+        </div>
+        <div class="notes-view">
+            <h5 class="note-title">Notes..</h5>
+            <div class="notes">
+                <p>here is going to display notesssss</p>
+            </div>
+            <div class="notes">
+                <p>here is going to display notesssss</p>
+            </div>
+        </div>
+        <div class="schedule-view">
+            <h5 class="schedule-title">schedules..</h5>
+            <div class="schedule">
+                <p>meeting at 12pm</p>
+            </div>
+            <div class="schedule">
+                <p>here is going to display notesssss</p>
+            </div>
+        </div>
+        <div class="project-view">
+            <h5 class="project-title">projects..</h5>
+            <div class="project-box">
+                <h5 class="project-name">whatsapp  clone</h5>
+                <p class="project-info">project information shows here... related 
+                    to project...
+                    like for example it is a whatsapp clone in this project is for making the clone of whatsapp to chat with other with all features of whatsapp image sharing and video chat etc............</p>
+                <img src="img/delete-icon.png" alt="delete icon" class="delete-icon">
+                <p class="last-date">last date-  2 dec 2020</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="items">
+            <a class="links active"><img src="img/home icon.png" alt="home icon"></a>
+            <a class="links"><img src="img/notes-icon.png" alt="notes icon"></a>
+            <a class="links"><img src="img/schedular-icon.png" alt="schedule icon"></a>
+            <a class="links"><img src="img/project-icon.png" alt="project icon"></a>
+        </div>
+    </div>
+
+    <!-- main end -->
+
+    <!-- scriptss -->
+    <script src="js/materialize.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/insertData.js"></script>
+
+</body>
+</html>

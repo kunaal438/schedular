@@ -1,0 +1,201 @@
+.topbar{
+    width: 100%;
+    height: 60px;
+    background: #f00;
+    padding: 15px 10vw;
+    font-family: roboto;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.check-form{
+    z-index: 2;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px 10vw;
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+    background: #eee;
+}
+
+.check-form img{
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 50%;
+    position: relative;
+    opacity: 0.5;
+}
+
+.check-form .back-btn{
+    position: absolute;
+    left: 10vw;
+    width: 40px;
+    opacity: 0.5;
+}
+
+.currentRoute {
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.user-info{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: fixed;
+    right: 10vw;
+    cursor: pointer;
+}
+
+.account-overlay,
+.add-overlay{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.add-overlay{
+    z-index: 7;
+}
+
+.account-overlay.display,
+.add-overlay.display{
+    display: none;
+}
+
+.account-box,
+.add-options{
+    position: fixed;
+    right: 10vw;
+    z-index: 11;
+    width: 200px;
+    height: fit-content;
+    background: #fffafa;
+    padding: 30px;
+    font-family: roboto;
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px 0px rgba(72, 72, 72, 0.43);
+}
+
+.add-options{
+    z-index: 8;
+    bottom: 115px;
+    right: 12vw;
+}
+
+.account-box.display,
+.add-options.display{
+    display: none;
+}
+
+.account-box::before{
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: -13px;
+    transform: rotate(45deg);
+    width: 30px;
+    height: 30px;
+    background: #fffafa;
+}
+
+.account-box h6,
+.add-options h6{
+    cursor: pointer;
+    user-select: none;
+}
+
+.account-box h6:first-child,
+.add-options h6{
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.account-box h6:first-child::after,
+.add-options h6:nth-child(1)::after,
+.add-options h6:nth-child(2)::after{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -60%;
+    transform: translateX(50%);
+    width: 150px;
+    height: 1px;
+    background: #000;
+}
+
+.account-box h6{
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.view{
+    width: 100%;
+    position: fixed;
+    height: calc(100vh - 120px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.add-btn{
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f00;
+    text-align: center;
+    line-height: 50px;
+    font-family: roboto;
+    font-weight: 900;
+    font-size: 40px;
+    z-index: 9;
+    position: absolute;
+    bottom: 80px;
+    right: 10vw;
+    cursor: pointer;
+    display: block;
+    user-select: none;
+}
+
+.add-btn:hover{
+    background: rgb(189, 1, 1);
+}
+
+.empty-view{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.empty-div h4{
+    color: #bebebe;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 20px;
+    margin: 10px 0;
+    font-family: roboto;
+}
+
+.form-title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: capitalize;
+    font-size: 20px;
+}

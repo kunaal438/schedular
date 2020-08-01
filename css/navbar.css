@@ -1,0 +1,39 @@
+.navbar{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+    background: #ebebeb;
+    display: flex;
+}
+
+.navbar .items{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .items .links{
+    width: calc(100%/4);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar .items .links.active{
+    border-top: 3px solid #f00;
+}
+
+.navbar .items .links:hover.active{
+    border-top: 3px solid #f00;
+}
+
+.navbar .items .links:hover{
+    border-top: 3px solid rgba(255, 0, 0, 0.219);
+}

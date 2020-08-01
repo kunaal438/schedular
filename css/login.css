@@ -1,0 +1,113 @@
+.login-page,
+.register-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    display: none;
+    z-index: 100;
+}
+
+.form{
+    width: 100%;
+    padding: 0 10vw;
+    height: fit-content;
+    background: transparent;
+    position: relative;
+}
+
+.loginHeader,
+.registerHeader{
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 300;
+    font-size: 40px;
+    font-family: roboto;
+}
+
+.form-inputs{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+    position: relative;
+}
+
+.form-inputs label,
+.form-inputs input{
+    width: 100%;
+    font-family: roboto;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+
+.form-inputs label{
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.form-inputs input{
+    height: 35px;
+    padding: 10px;
+    font-weight: 400;
+    border-radius: 10px;
+    border: 1px solid #000;
+    text-transform: lowercase;
+    outline: none;
+}
+
+.submitLoginBtn,
+.submitregisterBtn{
+    display: block;
+    padding: 2px 30px;
+    margin: 30px auto;
+    border: none;
+    font-family: galada;
+    font-size: 18px;
+    background: #ff0000;
+    box-shadow: 0px 1px 10px 0px rgba(72, 72, 72, 0.43);
+    color: #fff;
+    font-weight: 200;
+    cursor: pointer;
+    transition: all .2s ease;
+    border-radius: 5px;
+}
+
+.submitLoginBtn:focus,
+.submitregisterBtn:focus{
+    outline: none;
+    background: #ff0000 !important;
+}
+
+.submitLoginBtn:hover,
+.submitregisterBtn:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 10px 0px rgba(72, 72, 72, 0.43);
+}
+
+.registerLink,
+.loginLink{
+    text-transform: capitalize;
+    color: #000;
+    font-family: galada;
+    text-decoration: underline;
+    font-weight: 400;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.error-message{
+    position: absolute;
+    left: 0;
+    top: 43px;
+    color: #f00;
+}
