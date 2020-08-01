@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    fetch('/user')
+    fetch('http://localhost:3000/user')
     .then(res => res.json())
     .then(data => {
         if(data.id){
