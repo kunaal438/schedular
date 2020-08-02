@@ -70,6 +70,7 @@ registerBtn.addEventListener('click', () => {
             .then(data => {
                 if (data.id) {
                     alert('registered succesfully');
+                    sessionStorage.setItem('email', data.email);
                     isloggedIn = true;
                     loginpage.style.display = null;
                     registerpage.style.display = null;
@@ -107,8 +108,9 @@ logInBtn.addEventListener('click', () => {
         .then(res => res.json())
         .then(data => {
             if (data.id) {
-                alert('logged in');
-                console.log(data);
+                alert(data.email);
+                sessionStorage.setItem('email', data.email);
+                // console.log(data);
                 isloggedIn = true;
                 loginpage.style.display = null;
                 registerpage.style.display = null;

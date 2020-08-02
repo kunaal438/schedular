@@ -8,7 +8,8 @@ checkBtn.addEventListener('click', () => {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
-                    note: noteForm
+                    note: noteForm,
+                    email: sessionStorage.getItem('email')
                 })
             })
                 .then(res => res.json())
@@ -26,6 +27,7 @@ checkBtn.addEventListener('click', () => {
                         alert('err')
                     }
                 })
+                .catch(err => console.log(err));
         }
     } else if (currentLocation.includes('schedule')) {
         const schedule = document.querySelector('#schedule').value;
@@ -39,7 +41,8 @@ checkBtn.addEventListener('click', () => {
                 body: JSON.stringify({
                     schedule: schedule,
                     date: date,
-                    time: time
+                    time: time,
+                    email: sessionStorage.getItem('email')
                 })
             })
                 .then(res => res.json())
@@ -68,7 +71,8 @@ checkBtn.addEventListener('click', () => {
                 body: JSON.stringify({
                     title: title,
                     date: date,
-                    des: description
+                    des: description,
+                    email: sessionStorage.getItem('email')
                 })
             })
                 .then(res => res.json())
