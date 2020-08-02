@@ -4,7 +4,7 @@ checkBtn.addEventListener('click', () => {
     if (currentLocation.includes('note')) {
         const noteForm = document.querySelector('.notes-area').value;
         if (noteForm.length) {
-            fetch('http://localhost:3000/notes', {
+            fetch('http://schedular-app-438.herokuapp.com/notes', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
@@ -35,7 +35,7 @@ checkBtn.addEventListener('click', () => {
         const time = document.querySelector('#schedule-time').value;
 
         if(schedule.length && date.length && time.length){
-            fetch('http://localhost:3000/schedules', {
+            fetch('http://schedular-app-438.herokuapp.com/schedules', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
@@ -65,7 +65,7 @@ checkBtn.addEventListener('click', () => {
         const date = document.querySelector('#date').value;
 
         if(title.length && description.length && date.length){
-            fetch('http://localhost:3000/projects', {
+            fetch('http://schedular-app-438.herokuapp.com/projects', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({

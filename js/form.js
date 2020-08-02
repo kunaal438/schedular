@@ -57,7 +57,7 @@ registerBtn.addEventListener('click', () => {
     }
 
     if (passwordErr.innerHTML === "" && emailErr.innerHTML === "" && usernameErr.innerHTML === "") {
-        fetch('http://localhost:3000/register', {
+        fetch('http://schedular-app-438.herokuapp.com/register', {
             method: 'post',
             headers: new Headers({ 'Content-Type': 'application/json' }),
             body: JSON.stringify({
@@ -97,7 +97,7 @@ logInBtn.addEventListener('click', () => {
     const email = document.querySelector('#loginemail').value;
     const password = document.querySelector('#loginpassword').value;
 
-    fetch('http://localhost:3000/login', {
+    fetch('http://schedular-app-438.herokuapp.com/login', {
         method: 'post',
         headers: new Headers({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({

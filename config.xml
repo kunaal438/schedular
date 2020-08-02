@@ -2,14 +2,12 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     xmlns:android = "http://schemas.android.com/apk/res/android" 
-    id          = "com.ludo_star_offline.kunaal"
-    versionCode = "29" 
-    version     = "1.1.9" > <!-- value bigger than 1.0.1 and verCode bigger than 11 -->
+    id          = "com.schedular.kunaal"
+    versionCode = "01" 
+    version     = "1.0.0" > 
 
-<!-- versionCode is optional and Android only -->
-
-  <name>Ludo Star offline</name>
-  <icon src="assests/img/icon.png" width="180" height="180" />
+  <name>Schedular App</name>
+  <!-- <icon src="assests/img/icon.png" width="180" height="180" /> -->
 
   <preference name="Orientation" value='portrait'></preference>
   <preference name="Fullscreen" value="true" />
@@ -29,7 +27,7 @@
     </application>
   </gap:config-file>
 
-  <gap:plugin name="com.admob.plugin" source="npm" />
+  <!-- <gap:plugin name="com.admob.plugin" source="npm" />
   <gap:plugin name="cordova-plugin-local-notification" source="npm"/>
   <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
@@ -50,7 +48,7 @@
   <gap:splash platform="android" qualifier="port-hdpi" src="assests/img/image.png" />
   <gap:splash platform="android" qualifier="port-xhdpi" src="assests/img/image.png" />
 
-  <gap:splash src="splash.png" />
+  <gap:splash src="splash.png" /> -->
 
   <access origin="*" />
   <allow-navigation href="*" />
