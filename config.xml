@@ -28,11 +28,11 @@
   </gap:config-file>
 
   <!-- <gap:plugin name="com.admob.plugin" source="npm" />
-  <gap:plugin name="cordova-plugin-local-notification" source="npm"/>
-  <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
+  <gap:plugin name="cordova-plugin-local-notification" source="npm"/> -->
+  <!-- <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/> -->
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
 
-  <plugin name="cordova-plugin-splashscreen" source="npm" />
+  <!-- <plugin name="cordova-plugin-splashscreen" source="npm" />
   
   <preference name="SplashScreen" value="splash"/>
   <preference name="SplashScreenDelay" value="4000" />
