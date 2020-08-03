@@ -25,6 +25,10 @@ const settingUpView = () => {
     }
 }
 
+window.onload = () => {
+    settingUpView();
+}
+
 document.addEventListener("deviceready", deviceReadyFunc, false);
 
 const deviceReadyFunc = () => {
