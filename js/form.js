@@ -70,10 +70,10 @@ registerBtn.addEventListener('click', () => {
             .then(data => {
                 if (data.id) {
                     // alert('registered succesfully');
-                    if(!NativeStorage){
-                        sessionStorage.setItem('email', data.email);
+                    if(!Android) { 
+                        sessionStorage.setItem('email', data.email); 
                     } else{
-                        NativeStorage.setItem('user', data);
+                        localStorage.setItem('user', JSON.stringify(data));
                     }
                     isloggedIn = true;
                     loginpage.style.display = null;
@@ -113,10 +113,10 @@ logInBtn.addEventListener('click', () => {
         .then(data => {
             if (data.id) {
                 // alert(data.email);
-                if(!NativeStorage){
-                    sessionStorage.setItem('email', data.email);
+                if(!Android) { 
+                    sessionStorage.setItem('email', data.email); 
                 } else{
-                    NativeStorage.setItem('user', data);
+                    localStorage.setItem('user', JSON.stringify(data));
                 }
                 // console.log(data);
                 isloggedIn = true;

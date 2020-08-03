@@ -31,7 +31,6 @@
   <gap:plugin name="cordova-plugin-local-notification" source="npm"/> -->
   <!-- <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/> -->
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
-  <gap:plugin name="cordova-plugin-secure-storage" source="npm"/>
 
   <!-- <plugin name="cordova-plugin-splashscreen" source="npm" />
   

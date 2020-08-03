@@ -1,6 +1,9 @@
 const topbar = document.querySelector('.topbar');
 const navbar = document.querySelector('.navbar');
 
+const userAgent = navigator.userAgent.toLowerCase(); 
+const Android = userAgent.indexOf("android") > -1;
+
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.datepicker');
     let date = new Date();
@@ -15,9 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    if(NativeStorage){
-        let user = NativeStorage.getItem('user') || false;
-        if(user){
+    if(Android){
+        let login = JSON.parse(localStorage.getItem(user));
+        if(login.id){
             homeViewSetup();
             alert('user is in local storage');
         } else{
@@ -44,17 +47,7 @@ window.onload = () => {
 document.addEventListener('deviceready', deviceReadyFunc());
 
 const deviceReadyFunc = () => {
-    // settingUpView();
-    var ss = new cordova.plugins.SecureStorage(
-        function() {
-          console.log("Success");
-        },
-        function(error) {
-          console.log("Error " + error);
-        },
-        "my_app"
-      );
-    alert(cordova.plugins.SecureStorage);
+    settingUpView();
 }
 
 function homeViewSetup() {
