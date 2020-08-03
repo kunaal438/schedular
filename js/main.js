@@ -23,7 +23,7 @@ const settingUpView = () => {
     //     loginpage.style.display = 'flex';
     //     alert('user is not in local storage');
     // }
-    fetch('http://localhost:3000/user')
+    fetch('http://schedular-app-438.herokuapp.com/user')
     .then(res => res.json())
     .then(data => {
         if(data.id){
@@ -35,12 +35,12 @@ const settingUpView = () => {
 }
 
 window.onload = () => {
-    settingUpView();
+    onDeviceReady();
 }
 
-document.addEventListener("deviceready", deviceReadyFunc, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 
-const deviceReadyFunc = () => {
+const onDeviceReady = () => {
     settingUpView();
 }
 

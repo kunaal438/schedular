@@ -112,6 +112,7 @@ logInBtn.addEventListener('click', () => {
                 // alert(data.email);
                 
                 localStorage.setItem('user', JSON.stringify(data));
+                alert(JSON.parse(localStorage.getItem('user')));
                 // console.log(data);
                 isloggedIn = true;
                 loginpage.style.display = null;
