@@ -15,14 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    // let login = JSON.stringify(localStorage.getItem('user'));
-    // if(login.id){
-    //     homeViewSetup();
-    //     alert('user is in local storage');
-    // } else{
-    //     loginpage.style.display = 'flex';
-    //     alert('user is not in local storage');
-    // }
     fetch('http://schedular-app-438.herokuapp.com/user')
     .then(res => res.json())
     .then(data => {
@@ -35,12 +27,6 @@ const settingUpView = () => {
 }
 
 window.onload = () => {
-    onDeviceReady();
-}
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-const onDeviceReady = () => {
     settingUpView();
 }
 
