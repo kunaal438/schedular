@@ -15,15 +15,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    fetch('http://schedular-app-438.herokuapp.com/user')
-    .then(res => res.json())
-    .then(data => {
-        if(data.id){
-            homeViewSetup();
-        } else{
-            loginpage.style.display = 'flex';
-        }
-    })
+
+    let user = JSON.parse(localStorage.getItem('user'));
+    if(user.id){
+        homeViewSetup();
+    } else{
+        loginpage.style.display = 'flex';
+    }
+
+    // fetch('http://schedular-app-438.herokuapp.com/user')
+    // .then(res => res.json())
+    // .then(data => {
+    //     if(data.id){
+    //         homeViewSetup();
+    //     } else{
+    //         loginpage.style.display = 'flex';
+    //     }
+    // })
 }
 
 window.onload = () => {
