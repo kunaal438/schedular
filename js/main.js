@@ -45,7 +45,16 @@ document.addEventListener('deviceready', deviceReadyFunc());
 
 const deviceReadyFunc = () => {
     // settingUpView();
-    alert(NativeStorage);
+    var ss = new cordova.plugins.SecureStorage(
+        function() {
+          console.log("Success");
+        },
+        function(error) {
+          console.log("Error " + error);
+        },
+        "my_app"
+      );
+    alert(ss);
 }
 
 function homeViewSetup() {
