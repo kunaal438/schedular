@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const settingUpView = () => {
     if(NativeStorage){
-        let user = NativeStorage.getItem('user');
+        let user = NativeStorage.getItem('user') || false;
         if(user){
             homeViewSetup();
             alert('user is in local storage');
@@ -44,7 +44,8 @@ window.onload = () => {
 document.addEventListener('deviceready', deviceReadyFunc());
 
 const deviceReadyFunc = () => {
-    settingUpView();
+    // settingUpView();
+    alert(NativeStorage);
 }
 
 function homeViewSetup() {
