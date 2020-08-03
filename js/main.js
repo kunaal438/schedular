@@ -15,14 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    let login = JSON.stringify(localStorage.getItem('user'));
-    if(login.id){
-        homeViewSetup();
-        alert('user is in local storage');
-    } else{
-        loginpage.style.display = 'flex';
-        alert('user is not in local storage');
-    }
+    // let login = JSON.stringify(localStorage.getItem('user'));
+    // if(login.id){
+    //     homeViewSetup();
+    //     alert('user is in local storage');
+    // } else{
+    //     loginpage.style.display = 'flex';
+    //     alert('user is not in local storage');
+    // }
+    alert('hello');
 }
 
 window.onload = () => {
