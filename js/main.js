@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    let login = 'a';
+    let login = JSON.stringify(localStorage.getItem('user'));
     if(login.id){
         homeViewSetup();
         alert('user is in local storage');
@@ -25,11 +25,7 @@ const settingUpView = () => {
     }
 }
 
-window.onload = () => {
-    deviceReadyFunc();
-}
-
-document.addEventListener('deviceready', deviceReadyFunc());
+document.addEventListener("deviceready", deviceReadyFunc, false);
 
 const deviceReadyFunc = () => {
     settingUpView();
