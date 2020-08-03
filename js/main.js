@@ -23,7 +23,15 @@ const settingUpView = () => {
     //     loginpage.style.display = 'flex';
     //     alert('user is not in local storage');
     // }
-    alert('hello');
+    fetch('http://localhost:3000/user')
+    .then(res => res.json())
+    .then(data => {
+        if(data.id){
+            homeViewSetup();
+        } else{
+            loginpage.style.display = 'flex';
+        }
+    })
 }
 
 window.onload = () => {
