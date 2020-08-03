@@ -15,18 +15,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    fetch('http://schedular-app-438.herokuapp.com/user')
-    .then(res => res.json())
-    .then(data => {
-        if(data.id){
+    if(NativeStorage){
+        let user = NativeStorage.getItem('user');
+        if(user){
             homeViewSetup();
+            alert('user is in local storage');
         } else{
             loginpage.style.display = 'flex';
+            alert('user is not in local storage');
         }
-    })
+    } else{
+        fetch('http://schedular-app-438.herokuapp.com/user')
+        .then(res => res.json())
+        .then(data => {
+            if(data.id){
+                homeViewSetup();
+            } else{
+                loginpage.style.display = 'flex';
+            }
+        })
+    }
 }
 
 window.onload = () => {
+    deviceReadyFunc();
+}
+
+document.addEventListener('deviceready', deviceReadyFunc());
+
+const deviceReadyFunc = () => {
     settingUpView();
 }
 

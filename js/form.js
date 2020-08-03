@@ -69,8 +69,12 @@ registerBtn.addEventListener('click', () => {
             .then(res => res.json())
             .then(data => {
                 if (data.id) {
-                    alert('registered succesfully');
-                    sessionStorage.setItem('email', data.email);
+                    // alert('registered succesfully');
+                    if(!NativeStorage){
+                        sessionStorage.setItem('email', data.email);
+                    } else{
+                        NativeStorage.setItem('user', data);
+                    }
                     isloggedIn = true;
                     loginpage.style.display = null;
                     registerpage.style.display = null;
@@ -108,8 +112,12 @@ logInBtn.addEventListener('click', () => {
         .then(res => res.json())
         .then(data => {
             if (data.id) {
-                alert(data.email);
-                sessionStorage.setItem('email', data.email);
+                // alert(data.email);
+                if(!NativeStorage){
+                    sessionStorage.setItem('email', data.email);
+                } else{
+                    NativeStorage.setItem('user', data);
+                }
                 // console.log(data);
                 isloggedIn = true;
                 loginpage.style.display = null;
