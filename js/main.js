@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    let login = JSON.parse(localStorage.getItem(user));
+    let login = 'a';
     if(login.id){
         homeViewSetup();
         alert('user is in local storage');
