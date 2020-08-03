@@ -1,9 +1,6 @@
 const topbar = document.querySelector('.topbar');
 const navbar = document.querySelector('.navbar');
 
-const userAgent = navigator.userAgent.toLowerCase(); 
-const Android = userAgent.indexOf("android") > -1;
-
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.datepicker');
     let date = new Date();
@@ -18,25 +15,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
-    if(Android){
-        let login = JSON.parse(localStorage.getItem(user));
-        if(login.id){
-            homeViewSetup();
-            alert('user is in local storage');
-        } else{
-            loginpage.style.display = 'flex';
-            alert('user is not in local storage');
-        }
+    let login = JSON.parse(localStorage.getItem(user));
+    if(login.id){
+        homeViewSetup();
+        alert('user is in local storage');
     } else{
-        fetch('http://schedular-app-438.herokuapp.com/user')
-        .then(res => res.json())
-        .then(data => {
-            if(data.id){
-                homeViewSetup();
-            } else{
-                loginpage.style.display = 'flex';
-            }
-        })
+        loginpage.style.display = 'flex';
+        alert('user is not in local storage');
     }
 }
 
