@@ -54,7 +54,7 @@ const deviceReadyFunc = () => {
         },
         "my_app"
       );
-    alert(ss);
+    alert(cordova.plugins.SecureStorage);
 }
 
 function homeViewSetup() {
