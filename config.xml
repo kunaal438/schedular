@@ -10,7 +10,7 @@
   <!-- <icon src="assests/img/icon.png" width="180" height="180" /> -->
 
   <preference name="Orientation" value='portrait'></preference>
-  <preference name="Fullscreen" value="true" />
+  <!-- <preference name="Fullscreen" value="true" /> -->
 
   <description>
     make your schedules to utilize your time properly.
