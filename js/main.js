@@ -17,22 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
 const settingUpView = () => {
 
     let user = JSON.parse(localStorage.getItem('user'));
-    alert(user);
+    alert(user.name);
     if(user !== null){
         homeViewSetup();
     } else{
         loginpage.style.display = 'flex';
     }
-    // fetch('http://schedular-app-438.herokuapp.com/user')
-    // .then(res => res.json())
-    // .then(data => {
-    //     if(data.id){
-    //         homeViewSetup();
-    //     } else{
-    //         loginpage.style.display = 'flex';
-    //     }
-    // })
-
 }
 
 window.onload = () => {
