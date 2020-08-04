@@ -15,12 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const settingUpView = () => {
+    alert(NativeStorage);
 
-    let user = JSON.parse(localStorage.getItem('user'));
-    if(user !== null){
-        homeViewSetup();
-        alert(user.name);
-    } else{
+    if (NativeStorage) {
+        let user = NativeStorage.getItem("user");
+        if (user !== null) {
+            homeViewSetup();
+            alert(user.name);
+        } else {
+            loginpage.style.display = 'flex';
+        }
+    } else {
         loginpage.style.display = 'flex';
     }
 }

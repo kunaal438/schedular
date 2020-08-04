@@ -70,8 +70,7 @@ registerBtn.addEventListener('click', () => {
             .then(data => {
                 if (data.id) {
                     // alert('registered succesfully');
-                    
-                    localStorage.setItem('user', JSON.stringify(data));
+                    NativeStorage.setItem("user", data);
                     isloggedIn = true;
                     loginpage.style.display = null;
                     registerpage.style.display = null;
@@ -110,8 +109,7 @@ logInBtn.addEventListener('click', () => {
         .then(data => {
             if (data.id) {
                 // alert(data.email);
-                
-                localStorage.setItem('user', JSON.stringify(data));
+                NativeStorage.setItem("user", data);
                 alert(JSON.parse(localStorage.getItem('user')));
                 // console.log(data);
                 isloggedIn = true;
