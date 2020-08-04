@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
 const settingUpView = () => {
 
     let user = JSON.parse(localStorage.getItem('user'));
-    alert(user.name);
     if(user !== null){
         homeViewSetup();
+        alert(user.name);
     } else{
         loginpage.style.display = 'flex';
     }
