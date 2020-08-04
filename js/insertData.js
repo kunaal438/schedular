@@ -1,6 +1,7 @@
 const checkBtn = document.querySelector('.tick');
 
 checkBtn.addEventListener('click', () => {
+    let user = JSON.parse(localStorage.getItem('user'));
     if (currentLocation.includes('note')) {
         const noteForm = document.querySelector('.notes-area').value;
         if (noteForm.length) {
@@ -9,7 +10,7 @@ checkBtn.addEventListener('click', () => {
                 headers: new Headers({ 'Content-Type': 'application/json' }),
                 body: JSON.stringify({
                     note: noteForm,
-                    email: sessionStorage.getItem('email')
+                    email: user.email
                 })
             })
                 .then(res => res.json())
@@ -42,7 +43,7 @@ checkBtn.addEventListener('click', () => {
                     schedule: schedule,
                     date: date,
                     time: time,
-                    email: sessionStorage.getItem('email')
+                    email: user.email
                 })
             })
                 .then(res => res.json())
@@ -72,7 +73,7 @@ checkBtn.addEventListener('click', () => {
                     title: title,
                     date: date,
                     des: description,
-                    email: sessionStorage.getItem('email')
+                    email: user.email
                 })
             })
                 .then(res => res.json())
