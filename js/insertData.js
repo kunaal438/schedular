@@ -64,6 +64,7 @@ checkBtn.addEventListener('click', () => {
                 .then(res => res.json())
                 .catch(err => console.log(err))
                 addingDataToLocalStorage('projects', data);
+                creatingProjects();
                 navigateToViewAfterCreating(navbarlinks[3], 3);
         }
     }
