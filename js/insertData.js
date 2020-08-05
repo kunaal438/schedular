@@ -15,7 +15,11 @@ checkBtn.addEventListener('click', () => {
                 body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .catch(err => console.log(err));
+                .catch(err => {
+                    let arr = JSON.parse(localStorage.getItem('hastofetchnotes'));
+                    arr.push(data);
+                    localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
+                });
             
                 addingDataToLocalStorage('notes', data);
                 creatingNotes();
@@ -39,7 +43,11 @@ checkBtn.addEventListener('click', () => {
                 body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .catch(err => console.log(err));
+                .catch(err => {
+                    let arr = JSON.parse(localStorage.getItem('hastofetchschedules'));
+                    arr.push(data);
+                    localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
+                });
                 addingDataToLocalStorage('schedules', data);
                 creatingSchedules();
                 navigateToViewAfterCreating(navbarlinks[2], 2);
@@ -62,7 +70,11 @@ checkBtn.addEventListener('click', () => {
                 body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .catch(err => console.log(err))
+                .catch(err => {
+                    let arr = JSON.parse(localStorage.getItem('hastofetchprojects'));
+                    arr.push(data);
+                    localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
+                })
                 addingDataToLocalStorage('projects', data);
                 creatingProjects();
                 navigateToViewAfterCreating(navbarlinks[3], 3);
