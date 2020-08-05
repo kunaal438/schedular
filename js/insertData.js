@@ -18,6 +18,7 @@ checkBtn.addEventListener('click', () => {
                 .catch(err => console.log(err));
             
                 addingDataToLocalStorage('notes', data);
+                creatingNotes();
                 navigateToViewAfterCreating(navbarlinks[1], 1);
         }
     } else if (currentLocation.includes('schedule')) {

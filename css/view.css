@@ -84,6 +84,7 @@
 
 .project-info{
     line-height: 15px;
+    height: 45px;
     max-height: 104px;
     overflow: hidden;
 }

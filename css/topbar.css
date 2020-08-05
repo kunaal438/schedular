@@ -162,7 +162,7 @@
     font-size: 40px;
     z-index: 9;
     position: absolute;
-    bottom: 80px;
+    bottom: -77vh;
     right: 10vw;
     cursor: pointer;
     display: block;
