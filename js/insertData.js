@@ -5,30 +5,20 @@ checkBtn.addEventListener('click', () => {
     if (currentLocation.includes('note')) {
         const noteForm = document.querySelector('.notes-area').value;
         if (noteForm.length) {
+            let data = {
+                note: noteForm,
+                email: user.email
+            }
             fetch('http://schedular-app-438.herokuapp.com/notes', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
-                body: JSON.stringify({
-                    note: noteForm,
-                    email: user.email
-                })
+                body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .then(data => {
-                    if (data.id) {
-                        // fetch('/all-notes')
-                        // .then(res => res.json())
-                        // .then(data => {
-                            
-                        // });
-                        // to do store note to local
-
-                        alert('success');
-                    } else {
-                        alert('err')
-                    }
-                })
                 .catch(err => console.log(err));
+            
+                addingDataToLocalStorage('notes', data);
+                navigateToViewAfterCreating(navbarlinks[1], 1);
         }
     } else if (currentLocation.includes('schedule')) {
         const schedule = document.querySelector('#schedule').value;
@@ -36,29 +26,21 @@ checkBtn.addEventListener('click', () => {
         const time = document.querySelector('#schedule-time').value;
 
         if(schedule.length && date.length && time.length){
+            let data = {
+                schedule: schedule,
+                date: date,
+                time: time,
+                email: user.email
+            }
             fetch('http://schedular-app-438.herokuapp.com/schedules', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
-                body: JSON.stringify({
-                    schedule: schedule,
-                    date: date,
-                    time: time,
-                    email: user.email
-                })
+                body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .then(data => {
-                    if (data.id) {
-                        
-                        // to do store schedule to local
-
-                        alert('success');
-
-                        // have to set local notification
-                    } else {
-                        alert('err')
-                    }
-                })
+                .catch(err => console.log(err));
+                addingDataToLocalStorage('schedules', data);
+                navigateToViewAfterCreating(navbarlinks[2], 2);
         }
     } else if(currentLocation.includes('project')){
         const title = document.querySelector('#title').value;
@@ -66,29 +48,58 @@ checkBtn.addEventListener('click', () => {
         const date = document.querySelector('#date').value;
 
         if(title.length && description.length && date.length){
+            let data = {
+                title: title,
+                date: date,
+                des: description,
+                email: user.email
+            };
             fetch('http://schedular-app-438.herokuapp.com/projects', {
                 method: 'post',
                 headers: new Headers({ 'Content-Type': 'application/json' }),
-                body: JSON.stringify({
-                    title: title,
-                    date: date,
-                    des: description,
-                    email: user.email
-                })
+                body: JSON.stringify(data)
             })
                 .then(res => res.json())
-                .then(data => {
-                    if (data.id) {
-                        
-                        // to do store project to local
-
-                        alert('success');
-
-                        // have to set local notification
-                    } else {
-                        alert('err')
-                    }
-                })
+                .catch(err => console.log(err))
+                addingDataToLocalStorage('projects', data);
+                navigateToViewAfterCreating(navbarlinks[3], 3);
         }
     }
 })
+
+
+const addingDataToLocalStorage = (key, data) => {
+    let stored_data = JSON.parse(localStorage.getItem(key)); // [  { data } ]
+
+    if(stored_data !== null){
+        stored_data.push(data);
+
+        localStorage.setItem(key, JSON.stringify(stored_data));
+    } else{
+        localStorage.setItem(key, JSON.stringify([data]));
+    }
+}
+
+const navigateToViewAfterCreating = (item, index) => {
+    navbarlinks.map(link => {
+        link.classList.remove('active');
+    })
+    item.classList.add('active');
+    routeHeader.innerHTML = `${routes[index]}`;
+    currentLocation = `${routes[index]}`;
+    // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
+    views.map(obj => {
+        let view = document.querySelector(`.${obj}`);
+        view.classList.remove('upview');
+    })
+    
+    bottomBar.style.height = null;
+            bottomBar.style.display = 'block';
+            addBtn.style.display = 'block';
+            addOpt.style.display = null;
+            addOverlay.style.display = null;
+            formTopBar.style.display = null;
+
+    let view = document.querySelector(`.${views[index]}`);
+    view.classList.add('upview');
+}

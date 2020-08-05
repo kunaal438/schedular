@@ -19,7 +19,6 @@ const settingUpView = () => {
     let user = JSON.parse(localStorage.getItem('user'));
     if(user !== null){
         homeViewSetup();
-        alert(user.username);
     } else{
         loginpage.style.display = 'flex';
     }
