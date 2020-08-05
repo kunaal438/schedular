@@ -41,6 +41,7 @@ checkBtn.addEventListener('click', () => {
                 .then(res => res.json())
                 .catch(err => console.log(err));
                 addingDataToLocalStorage('schedules', data);
+                creatingSchedules();
                 navigateToViewAfterCreating(navbarlinks[2], 2);
         }
     } else if(currentLocation.includes('project')){
