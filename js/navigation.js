@@ -1,7 +1,7 @@
 const routes = [
     "home",
     "notes",
-    "schedule",
+    "schedules",
     "projects"
 ];
 
@@ -57,9 +57,32 @@ navbarlinks.map((item, index) => {
             let view = document.querySelector(`.${obj}`);
             view.classList.remove('upview');
         })
-        
-        let view = document.querySelector(`.${views[index]}`);
-        view.classList.add('upview');
+
+        if (index !== 0) {
+            let is_it_empty = JSON.parse(localStorage.getItem(`${routes[index]}`));
+
+            if (is_it_empty === null || !is_it_empty.length) {
+                checkForEmpty(`no ${routes[index]}`);
+            } else {
+                removeEmptyScreen();
+                let view = document.querySelector(`.${views[index]}`);
+                view.classList.add('upview');
+            }
+        } else {
+            let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
+            let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
+            let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
+
+            if((is_any_notes === null || !is_any_notes.length) && (is_any_schedules === null || !is_any_schedules.length) && (is_any_projects === null || !is_any_projects.length)){
+                checkForEmpty(`empty inbox`);
+            } else{
+                removeEmptyScreen();
+                let view = document.querySelector(`.${views[index]}`);
+                view.classList.add('upview');
+            }
+        }
+
+
     })
 })
 
@@ -68,19 +91,19 @@ linksArr.map((obj, index) => {
     link.addEventListener('click', () => {
         navbarlinks.map((links, i) => {
             links.classList.remove('active');
-            if(i === index+1){
+            if (i === index + 1) {
                 links.classList.add('active');
             }
         })
-        routeHeader.innerHTML = `${routes[index+1]}`;
+        routeHeader.innerHTML = `${routes[index + 1]}`;
         currentLocation = `${routes[index]}`;
         // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
         views.map(obj => {
             let view = document.querySelector(`.${obj}`);
             view.classList.remove('upview');
         })
-        
-        let view = document.querySelector(`.${views[index+1]}`);
+
+        let view = document.querySelector(`.${views[index + 1]}`);
         view.classList.add('upview');
     })
 })
@@ -145,7 +168,7 @@ backFromForm.addEventListener('click', () => {
     currentView.classList.remove('upview');
 
     routes.map((item, i) => {
-        if(item === routeHeader.innerHTML.toLowerCase()){            
+        if (item === routeHeader.innerHTML.toLowerCase()) {
             let view = document.querySelector(`.${views[i]}`);
             view.classList.add('upview');
             bottomBar.style.height = null;

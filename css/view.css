@@ -40,6 +40,11 @@
     display: block;
 }
 
+.upview-empty{
+    z-index: 7;
+    display: flex;
+}
+
 .note-title,
 .schedule-title,
 .project-title{

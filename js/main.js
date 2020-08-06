@@ -32,21 +32,31 @@ function homeViewSetup() {
     topbar.style.display = 'flex';
     navbar.style.display = 'flex';
     addBtn.style.display = 'block';
-    let view = document.querySelector(`.${views[0]}`);
-    view.classList.add('upview');
+    let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
+    let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
+    let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
+
+    if ((is_any_notes === null || !is_any_notes.length) && (is_any_schedules === null || !is_any_schedules.length) && (is_any_projects === null || !is_any_projects.length)) {
+        checkForEmpty(`empty inbox`);
+    } else {
+        let view = document.querySelector(`.${views[0]}`);
+        view.classList.add('upview');
+    }
     checkingfornotesinsertion();
     checkingforschedulesinsertion();
     checkingforprojectsinsertion();
     let note = JSON.parse(localStorage.getItem('notes'));
-    if(note !== null){
+    if (note !== null) {
         creatingNotes();
+    } else {
+
     }
     let schedule = JSON.parse(localStorage.getItem('schedules'));
-    if(schedule !== null){
+    if (schedule !== null) {
         creatingSchedules();
     }
     let project = JSON.parse(localStorage.getItem('projects'));
-    if(project !== null){
+    if (project !== null) {
         creatingProjects();
     }
 }
@@ -69,7 +79,7 @@ const checkingfornotesinsertion = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if(i === note.length-1){
+                        if (i === note.length - 1) {
                             localStorage.setItem('hastofetchnotes', JSON.stringify([]));
                         }
                     })
@@ -93,7 +103,7 @@ const checkingforschedulesinsertion = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if(i === schedule.length-1){
+                        if (i === schedule.length - 1) {
                             localStorage.setItem('hastofetchschedules', JSON.stringify([]));
                         }
                     })
@@ -117,7 +127,7 @@ const checkingforprojectsinsertion = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if(i === project.length-1){
+                        if (i === project.length - 1) {
                             localStorage.setItem('hastofetchprojects', JSON.stringify([]));
                         }
                     })
@@ -125,4 +135,24 @@ const checkingforprojectsinsertion = () => {
             })
         }
     }
+}
+
+const checkForEmpty = (data) => {
+    const emptyView = document.querySelector('.empty-view');
+    const h4 = document.querySelector('.empty-view .empty-div h4');
+
+    h4.innerHTML = data;
+
+    views.map(obj => {
+        let view = document.querySelector(`.${obj}`);
+        view.classList.remove('upview');
+    })
+
+    emptyView.classList.add('upview-empty');
+    // console.log(emptyView);
+}
+
+const removeEmptyScreen = () => {
+    const emptyView = document.querySelector('.empty-view');
+    emptyView.classList.remove('upview-empty');
 }
