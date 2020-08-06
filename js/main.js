@@ -37,6 +37,18 @@ function homeViewSetup() {
     checkingfornotesinsertion();
     checkingforschedulesinsertion();
     checkingforprojectsinsertion();
+    let note = JSON.parse(localStorage.getItem('notes'));
+    if(note !== null){
+        creatingNotes();
+    }
+    let schedule = JSON.parse(localStorage.getItem('schedules'));
+    if(schedule !== null){
+        creatingSchedules();
+    }
+    let project = JSON.parse(localStorage.getItem('projects'));
+    if(project !== null){
+        creatingProjects();
+    }
 }
 
 
