@@ -73,9 +73,9 @@ navbarlinks.map((item, index) => {
             let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
             let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
 
-            if((is_any_notes === null || !is_any_notes.length) && (is_any_schedules === null || !is_any_schedules.length) && (is_any_projects === null || !is_any_projects.length)){
+            if ((is_any_notes === null || !is_any_notes.length) && (is_any_schedules === null || !is_any_schedules.length) && (is_any_projects === null || !is_any_projects.length)) {
                 checkForEmpty(`empty inbox`);
-            } else{
+            } else {
                 removeEmptyScreen();
                 let view = document.querySelector(`.${views[index]}`);
                 view.classList.add('upview');
@@ -118,6 +118,7 @@ noteFormLink.addEventListener('click', () => {
     views.map(obj => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
+        removeEmptyScreen();
     })
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
@@ -136,6 +137,7 @@ scheduleFormLink.addEventListener('click', () => {
     views.map(obj => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
+        removeEmptyScreen();
     })
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
@@ -154,6 +156,7 @@ projectFormLink.addEventListener('click', () => {
     views.map(obj => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
+        removeEmptyScreen();
     })
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
@@ -170,7 +173,19 @@ backFromForm.addEventListener('click', () => {
     routes.map((item, i) => {
         if (item === routeHeader.innerHTML.toLowerCase()) {
             let view = document.querySelector(`.${views[i]}`);
-            view.classList.add('upview');
+            let is_it_empty = JSON.parse(localStorage.getItem(`${routes[i]}`));
+
+            if (is_it_empty === null || !is_it_empty.length) {
+                if(i === 0){
+                    checkForEmpty(`empty inbox`);
+                } else{
+                    checkForEmpty(`no ${routes[i]}`);
+                }
+                
+            } else {
+                removeEmptyScreen();
+                view.classList.add('upview');
+            }
             bottomBar.style.height = null;
             bottomBar.style.display = 'block';
             addBtn.style.display = 'block';
