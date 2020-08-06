@@ -1,6 +1,8 @@
 
 const homeScreenDOMCreation = () => {
     let parentDiv = document.querySelector('.home-view');
+    parentDiv.innerHTML = ''
+
     let all_notes = JSON.parse(localStorage.getItem('notes'));
 
     if (all_notes !== null || all_notes.length) {
