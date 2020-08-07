@@ -1,5 +1,12 @@
 const checkBtn = document.querySelector('.tick');
 
+const formInputsArr = [
+    document.querySelector('.notes-area'),
+    document.querySelector('#schedule'),
+    document.querySelector('#title'),
+    document.querySelector('#description')
+]
+
 checkBtn.addEventListener('click', () => {
     let user = JSON.parse(localStorage.getItem('user'));
     if (currentLocation.includes('note')) {
@@ -22,6 +29,7 @@ checkBtn.addEventListener('click', () => {
                 });
             
                 addingDataToLocalStorage('notes', data);
+                formInputsValueToNull();
                 creatingNotes();
                 navigateToViewAfterCreating(navbarlinks[1], 1);
         }
@@ -49,6 +57,7 @@ checkBtn.addEventListener('click', () => {
                     localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
                 });
                 addingDataToLocalStorage('schedules', data);
+                formInputsValueToNull();
                 creatingSchedules();
                 navigateToViewAfterCreating(navbarlinks[2], 2);
         }
@@ -76,6 +85,7 @@ checkBtn.addEventListener('click', () => {
                     localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
                 })
                 addingDataToLocalStorage('projects', data);
+                formInputsValueToNull();
                 creatingProjects();
                 navigateToViewAfterCreating(navbarlinks[3], 3);
         }
@@ -117,4 +127,10 @@ const navigateToViewAfterCreating = (item, index) => {
 
     let view = document.querySelector(`.${views[index]}`);
     view.classList.add('upview');
+}
+
+const formInputsValueToNull = () => {
+    formInputsArr.map(item => {
+        item.value = '';
+    })
 }

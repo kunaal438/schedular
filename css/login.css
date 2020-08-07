@@ -71,6 +71,7 @@
     padding: 2px 30px;
     margin: 30px auto;
     border: none;
+    height: 30px;
     font-family: galada;
     font-size: 18px;
     background: #ff0000;
@@ -79,6 +80,7 @@
     font-weight: 200;
     cursor: pointer;
     transition: all .2s ease;
+    text-transform: capitalize;
     border-radius: 5px;
 }
 

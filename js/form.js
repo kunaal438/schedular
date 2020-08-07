@@ -34,7 +34,13 @@ const usernameErr = document.querySelector('#username-err');
 const emailErr = document.querySelector('#email-err');
 const passwordErr = document.querySelector('#password-err');
 
+
+const username = document.querySelector('#username').value;
+const email = document.querySelector('#registeremail').value;
+const password = document.querySelector('#registerpassword').value;
+
 registerBtn.addEventListener('click', () => {
+    
     const username = document.querySelector('#username').value;
     const email = document.querySelector('#registeremail').value;
     const password = document.querySelector('#registerpassword').value;
@@ -84,10 +90,13 @@ registerBtn.addEventListener('click', () => {
 
                     homeViewSetup();
                 } else {
-                    alert('fail to register');
+                    // alert('fail to register');
+                    loading.style.display = null;
+                    usernameErr.innerHTML = 'error while fetching to server may be a network issue';
                 }
             })
             .catch(err => {
+                loading.style.display = null;
                 usernameErr.innerHTML = 'error while fetching to server may be a network issue';
             })
     }
@@ -101,7 +110,11 @@ const logInBtn = document.querySelector('.submitLoginBtn');
 // err
 const logInErr = document.querySelector('#log-email-err');
 
+const loginemail = document.querySelector('#loginemail');
+const loginpassword = document.querySelector('#loginpassword');
+
 logInBtn.addEventListener('click', () => {
+
     const email = document.querySelector('#loginemail').value;
     const password = document.querySelector('#loginpassword').value;
     loading.style.display = 'flex';
@@ -165,8 +178,10 @@ logInBtn.addEventListener('click', () => {
                 // console.log(data);
 
             } else if (data === 'wrong credentials') {
+                loading.style.display = null;
                 logInErr.innerHTML = 'email and password dont match';
             } else {
+                loading.style.display = null;
                 logInErr.innerHTML = data;
             }
         })
@@ -182,5 +197,21 @@ const signOutBtn = document.querySelector('.sign-out-btn');
 
 signOutBtn.addEventListener('click', () => {
     localStorage.clear();
+    accountBox.classList.toggle('display');
+    allInputValueToNull();
     loginpage.style.display = 'flex';
 })
+
+const allInputsArr = [
+    username,
+    email,
+    password,
+    loginemail,
+    loginpassword
+];
+
+const allInputValueToNull = () => {
+    allInputsArr.map(item => {
+        item.value = '';
+    })
+}

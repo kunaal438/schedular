@@ -198,6 +198,7 @@ backFromForm.addEventListener('click', () => {
                 homeScreenDOMCreation();
                 view.classList.add('upview');
             }
+            formInputsValueToNull();
             bottomBar.style.height = null;
             bottomBar.style.display = 'block';
             addBtn.style.display = 'block';
