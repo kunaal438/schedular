@@ -1,3 +1,6 @@
+// loading screen
+const loading = document.querySelector('.loading');
+
 // varliables decrations
 
 const loginlink = document.querySelector('.loginLink');
@@ -57,6 +60,8 @@ registerBtn.addEventListener('click', () => {
     }
 
     if (passwordErr.innerHTML === "" && emailErr.innerHTML === "" && usernameErr.innerHTML === "") {
+        loading.style.display = 'flex';
+
         fetch('http://schedular-app-438.herokuapp.com/register', {
             method: 'post',
             headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -70,11 +75,13 @@ registerBtn.addEventListener('click', () => {
             .then(data => {
                 if (data.id) {
                     // alert('registered succesfully');
-                    
+
                     localStorage.setItem('user', JSON.stringify(data));
                     isloggedIn = true;
                     loginpage.style.display = null;
                     registerpage.style.display = null;
+                    loading.style.display = null;
+
                     homeViewSetup();
                 } else {
                     alert('fail to register');
@@ -97,6 +104,7 @@ const logInErr = document.querySelector('#log-email-err');
 logInBtn.addEventListener('click', () => {
     const email = document.querySelector('#loginemail').value;
     const password = document.querySelector('#loginpassword').value;
+    loading.style.display = 'flex';
 
     fetch('http://schedular-app-438.herokuapp.com/login', {
         method: 'post',
@@ -110,15 +118,52 @@ logInBtn.addEventListener('click', () => {
         .then(data => {
             if (data.id) {
                 // alert(data.email);
-                
+
                 localStorage.setItem('user', JSON.stringify(data));
-                alert(JSON.parse(localStorage.getItem('user')));
+                // alert(JSON.parse(localStorage.getItem('user')));
+                fetch('http://schedular-app-438.herokuapp.com/all-notes', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify({
+                        email: data.email
+                    })
+                })
+                    .then(res => res.json())
+                    .then(notes => {
+                        localStorage.setItem('notes', JSON.stringify(notes));
+                        fetch('http://schedular-app-438.herokuapp.com/all-schedules', {
+                            method: 'post',
+                            headers: new Headers({ 'Content-Type': 'application/json' }),
+                            body: JSON.stringify({
+                                email: data.email
+                            })
+                        })
+                            .then(res => res.json())
+                            .then(schedules => {
+                                localStorage.setItem('schedules', JSON.stringify(schedules));
+                                fetch('http://schedular-app-438.herokuapp.com/all-projects', {
+                                    method: 'post',
+                                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                                    body: JSON.stringify({
+                                        email: data.email
+                                    })
+                                })
+                                    .then(res => res.json())
+                                    .then(projects => {
+                                        localStorage.setItem('projects', JSON.stringify(projects));
+                                        isloggedIn = true;
+                                        loginpage.style.display = null;
+                                        registerpage.style.display = null;
+                                        loading.style.display = null;
+                                        homeViewSetup();
+                                        logInErr.innerHTML = '';
+                                    })
+                            })
+                        // homeScreenDOMCreation();
+
+                    })
                 // console.log(data);
-                isloggedIn = true;
-                loginpage.style.display = null;
-                registerpage.style.display = null;
-                homeViewSetup();
-                logInErr.innerHTML = '';
+
             } else if (data === 'wrong credentials') {
                 logInErr.innerHTML = 'email and password dont match';
             } else {
