@@ -174,3 +174,13 @@ logInBtn.addEventListener('click', () => {
             logInErr.innerHTML = 'error while fetching to server may be a network issue';
         })
 })
+
+
+// sign out btn
+
+const signOutBtn = document.querySelector('.sign-out-btn');
+
+signOutBtn.addEventListener('click', () => {
+    localStorage.clear();
+    loginpage.style.display = 'flex';
+})
