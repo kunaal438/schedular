@@ -35,10 +35,11 @@ function homeViewSetup() {
     let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
     let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
     let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
-
-    if ((is_any_notes === null || !is_any_notes.length) && (is_any_schedules === null || !is_any_schedules.length) && (is_any_projects === null || !is_any_projects.length)) {
+    console.log(is_any_notes);
+    if (!is_any_notes.length && !is_any_schedules.length && !is_any_projects.length) {
         checkForEmpty(`empty inbox`);
     } else {
+        removeEmptyScreen();
         homeScreenDOMCreation();
         let view = document.querySelector(`.${views[0]}`);
         view.classList.add('upview');

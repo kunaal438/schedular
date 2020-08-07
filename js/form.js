@@ -168,6 +168,7 @@ logInBtn.addEventListener('click', () => {
                                         loginpage.style.display = null;
                                         registerpage.style.display = null;
                                         loading.style.display = null;
+                                        console.log('yes');
                                         homeViewSetup();
                                         logInErr.innerHTML = '';
                                     })
@@ -198,6 +199,7 @@ const signOutBtn = document.querySelector('.sign-out-btn');
 signOutBtn.addEventListener('click', () => {
     localStorage.clear();
     accountBox.classList.toggle('display');
+    accountOverlay.classList.toggle('display');
     allInputValueToNull();
     loginpage.style.display = 'flex';
 })
