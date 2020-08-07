@@ -77,6 +77,7 @@ navbarlinks.map((item, index) => {
                 checkForEmpty(`empty inbox`);
             } else {
                 removeEmptyScreen();
+                homeScreenDOMCreation();
                 let view = document.querySelector(`.${views[index]}`);
                 view.classList.add('upview');
             }
@@ -118,8 +119,12 @@ noteFormLink.addEventListener('click', () => {
     views.map(obj => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
+        console.log('yes');
         removeEmptyScreen();
-    })
+    });
+    scheduleForm.classList.remove('upview');
+    projectForm.classList.remove('upview');
+    notesForm.classList.remove('upview');
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
     notesForm.classList.add('upview');
@@ -139,6 +144,9 @@ scheduleFormLink.addEventListener('click', () => {
         view.classList.remove('upview');
         removeEmptyScreen();
     })
+    scheduleForm.classList.remove('upview');
+    projectForm.classList.remove('upview');
+    notesForm.classList.remove('upview');
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
     scheduleForm.classList.add('upview');
@@ -158,6 +166,9 @@ projectFormLink.addEventListener('click', () => {
         view.classList.remove('upview');
         removeEmptyScreen();
     })
+    scheduleForm.classList.remove('upview');
+    projectForm.classList.remove('upview');
+    notesForm.classList.remove('upview');
     addOpt.classList.toggle('display');
     addOverlay.classList.toggle('display');
     projectForm.classList.add('upview');
@@ -175,7 +186,7 @@ backFromForm.addEventListener('click', () => {
             let view = document.querySelector(`.${views[i]}`);
             let is_it_empty = JSON.parse(localStorage.getItem(`${routes[i]}`));
 
-            if (is_it_empty === null || !is_it_empty.length) {
+            if (i !== 0 && is_it_empty === null) {
                 if(i === 0){
                     checkForEmpty(`empty inbox`);
                 } else{
@@ -184,6 +195,7 @@ backFromForm.addEventListener('click', () => {
                 
             } else {
                 removeEmptyScreen();
+                homeScreenDOMCreation();
                 view.classList.add('upview');
             }
             bottomBar.style.height = null;
