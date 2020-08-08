@@ -35,7 +35,7 @@ function homeViewSetup() {
     let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
     let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
     let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
-    console.log(is_any_notes);
+    // console.log(is_any_notes);
     if (!is_any_notes.length && !is_any_schedules.length && !is_any_projects.length) {
         checkForEmpty(`empty inbox`);
     } else {

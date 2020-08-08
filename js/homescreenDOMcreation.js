@@ -26,6 +26,15 @@ const homeScreenDOMCreation = () => {
 
                 div.className = 'notes';
             }
+            if(i === 1 && all_notes.length > 2){
+                let a = document.createElement('a');
+
+                parentDiv.appendChild(a);
+                a.appendChild(document.createTextNode('more'));
+
+                a.className = 'notes-link';
+                appendingFuncToLink('notes-link', 0);
+            }
         }
     }
 
@@ -54,6 +63,15 @@ const homeScreenDOMCreation = () => {
                 p.appendChild(document.createTextNode(all_schedules[i].schedule));
 
                 div.className = 'schedule';
+            }
+            if(i === loopIntervals-1 && all_schedules.length > loopIntervals){
+                let a = document.createElement('a');
+
+                parentDiv.appendChild(a);
+                a.appendChild(document.createTextNode('more'));
+
+                a.className = 'schedule-link';
+                appendingFuncToLink('schedule-link', 1);
             }
         }
     }
@@ -98,6 +116,15 @@ const homeScreenDOMCreation = () => {
                 h5.className = 'project-name';
                 p.className = 'project-info';
                 date.className = 'last-date';
+            }
+            if(i === loopIntervals-1 && all_schedules.length > loopIntervals){
+                let a = document.createElement('a');
+
+                parentDiv.appendChild(a);
+                a.appendChild(document.createTextNode('more'));
+
+                a.className = 'project-link';
+                appendingFuncToLink('project-link', 2);
             }
         }
     }

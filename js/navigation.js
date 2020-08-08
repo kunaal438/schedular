@@ -19,11 +19,6 @@ const views = [
     'project-view'
 ];
 
-const linksArr = [
-    "notes-link",
-    "schedule-link",
-    "project-link"
-];
 
 let currentLocation = 'home';
 
@@ -87,27 +82,27 @@ navbarlinks.map((item, index) => {
     })
 })
 
-linksArr.map((obj, index) => {
-    let link = document.querySelector(`.${obj}`);
-    link.addEventListener('click', () => {
-        navbarlinks.map((links, i) => {
-            links.classList.remove('active');
-            if (i === index + 1) {
-                links.classList.add('active');
-            }
+const appendingFuncToLink = (obj, index) => {
+        let link = document.querySelector(`.${obj}`);
+        link.addEventListener('click', () => {
+            navbarlinks.map((links, i) => {
+                links.classList.remove('active');
+                if (i === index + 1) {
+                    links.classList.add('active');
+                }
+            })
+            routeHeader.innerHTML = `${routes[index + 1]}`;
+            currentLocation = `${routes[index]}`;
+            // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
+            views.map(obj => {
+                let view = document.querySelector(`.${obj}`);
+                view.classList.remove('upview');
+            })
+    
+            let view = document.querySelector(`.${views[index + 1]}`);
+            view.classList.add('upview');
         })
-        routeHeader.innerHTML = `${routes[index + 1]}`;
-        currentLocation = `${routes[index]}`;
-        // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
-        views.map(obj => {
-            let view = document.querySelector(`.${obj}`);
-            view.classList.remove('upview');
-        })
-
-        let view = document.querySelector(`.${views[index + 1]}`);
-        view.classList.add('upview');
-    })
-})
+}
 
 noteFormLink.addEventListener('click', () => {
     bottomBar.style.height = `0px`;
