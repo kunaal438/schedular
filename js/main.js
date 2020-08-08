@@ -5,13 +5,30 @@ document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.datepicker');
     let date = new Date();
     var instances = M.Datepicker.init(elems, {
-        defaultDate: date.getDate()
+        defaultDate: date,
+        setDefaultDate: true,
+        disableDayFn: function(date) {
+            let today = new Date();
+            if(date.getMonth() > today.getMonth()){
+                    return false;
+            }
+            else if(date.getMonth() < today.getMonth()){
+                return true;
+            }
+            else if (date.getDate() >= today.getDate()){
+                return false;
+            }
+            else{
+                return true;
+          }
+        }
     });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.timepicker');
-    var instances = M.Timepicker.init(elems);
+    var instances = M.Timepicker.init(elems, {
+    });
 });
 
 const settingUpView = () => {

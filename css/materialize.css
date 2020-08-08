@@ -8682,6 +8682,10 @@ input[type=range]::-ms-thumb {
   border: none;
 }
 
+.month-prev:focus, .month-next:focus {
+  background-color: #a62626 ;
+}
+
 /* Date Display */
 .datepicker-date-display {
   -webkit-box-flex: 1;
