@@ -106,7 +106,7 @@ noteFormLink.addEventListener('click', () => {
     views.map(obj => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
-        console.log('yes');
+        // console.log('yes');
         removeEmptyScreen();
     });
     scheduleForm.classList.remove('upview');

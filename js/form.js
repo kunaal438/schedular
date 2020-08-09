@@ -168,7 +168,7 @@ logInBtn.addEventListener('click', () => {
                                         loginpage.style.display = null;
                                         registerpage.style.display = null;
                                         loading.style.display = null;
-                                        console.log('yes');
+                                        // console.log('yes');
                                         homeViewSetup();
                                         logInErr.innerHTML = '';
                                     })

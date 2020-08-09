@@ -59,11 +59,17 @@
 .project-box{
     position: relative;
     width: 100%;
-    height: fit-content;
-    padding: 10px 40px;
+    height: 30px;
+    padding: 5px 20px;
     background: #ffc6c6;
     margin-bottom: 10px;
     font-family: galada;
+}
+
+.notes .left{
+    width: 97%;
+    height: 100%;
+    /* background: #ff7a7a; */
 }
 
 .notes p,

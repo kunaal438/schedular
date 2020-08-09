@@ -9,11 +9,13 @@ const creatingNotes = () => {
 
     data.map(obj => {
         let div = document.createElement('div');
+        let leftDiv = document.createElement('div');
         let p = document.createElement('p');
         let img = document.createElement('img');
 
         parentDiv.appendChild(div);
-        div.appendChild(p);
+        div.appendChild(leftDiv);
+        leftDiv.appendChild(p);
         div.appendChild(img);
         p.appendChild(document.createTextNode(obj.note));
         img.setAttribute('src', 'img/delete-icon.png');
@@ -21,8 +23,10 @@ const creatingNotes = () => {
         img.setAttribute('class', 'notes-delete-icon');
 
         div.className = 'notes';
+        leftDiv.className = 'left';
     })
     appendingDeleteBtnEvent('notes');
+    updateEvent('notes');
 }
 
 const creatingSchedules = () => {
