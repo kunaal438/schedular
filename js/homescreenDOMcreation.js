@@ -7,7 +7,7 @@ const homeScreenDOMCreation = () => {
 
     let all_notes = JSON.parse(localStorage.getItem('notes'));
 
-    if (all_notes !== null) {
+    if (all_notes.length !== 0 && all_notes !== null) {
         total_space_occupied = 2;
         let title = document.createElement('h5');
         parentDiv.appendChild(title);
@@ -40,7 +40,7 @@ const homeScreenDOMCreation = () => {
 
     let all_schedules = JSON.parse(localStorage.getItem('schedules'));
 
-    if (all_schedules !== null) {
+    if (all_schedules.length !== 0 && all_schedules !== null) {
         let title = document.createElement('h5');
         parentDiv.appendChild(title);
         title.appendChild(document.createTextNode('schedules..'));
@@ -78,7 +78,7 @@ const homeScreenDOMCreation = () => {
 
     let all_projects = JSON.parse(localStorage.getItem('projects'));
 
-    if (all_projects !== null) {
+    if (all_projects.length !== 0 && all_projects !== null) {
         let title = document.createElement('h5');
         parentDiv.appendChild(title);
         title.appendChild(document.createTextNode('projects..'));

@@ -10,13 +10,19 @@ const creatingNotes = () => {
     data.map(obj => {
         let div = document.createElement('div');
         let p = document.createElement('p');
+        let img = document.createElement('img');
 
         parentDiv.appendChild(div);
         div.appendChild(p);
+        div.appendChild(img);
         p.appendChild(document.createTextNode(obj.note));
+        img.setAttribute('src', 'img/delete-icon.png');
+        img.setAttribute('alt', 'delete icon');
+        img.setAttribute('class', 'notes-delete-icon');
 
         div.className = 'notes';
     })
+    appendingDeleteBtnEvent('notes');
 }
 
 const creatingSchedules = () => {
@@ -31,13 +37,19 @@ const creatingSchedules = () => {
     data.map(obj => {
         let div = document.createElement('div');
         let p = document.createElement('p');
+        let img = document.createElement('img');
 
         parentDiv.appendChild(div);
         div.appendChild(p);
+        div.appendChild(img);
         p.appendChild(document.createTextNode(obj.schedule));
+        img.setAttribute('src', 'img/delete-icon.png');
+        img.setAttribute('alt', 'delete icon');
+        img.setAttribute('class', 'schedules-delete-icon');
 
         div.className = 'schedule';
     })
+    appendingDeleteBtnEvent('schedules');
 }
 
 const creatingProjects = () => {
@@ -66,7 +78,7 @@ const creatingProjects = () => {
         p.appendChild(document.createTextNode(obj.des));
         img.setAttribute('src', 'img/delete-icon.png');
         img.setAttribute('alt', 'delete icon');
-        img.setAttribute('class', 'delete-icon');
+        img.setAttribute('class', 'projects-delete-icon');
         date.appendChild(document.createTextNode(`lat date :- ${obj.date}`))
 
         div.className = 'project-box';
@@ -74,4 +86,5 @@ const creatingProjects = () => {
         p.className = 'project-info';
         date.className = 'last-date';
     })
+    appendingDeleteBtnEvent('projects')
 }

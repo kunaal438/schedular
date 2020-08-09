@@ -78,6 +78,9 @@ function homeViewSetup() {
     if (project !== null) {
         creatingProjects();
     }
+    appendingDeleteBtnEvent('notes')
+    appendingDeleteBtnEvent('schedules')
+    appendingDeleteBtnEvent('projects')
 }
 
 

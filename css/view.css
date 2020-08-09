@@ -93,7 +93,7 @@
     overflow: hidden;
 }
 
-.delete-icon{
+.projects-delete-icon{
     width: 20px;
     margin: 5px 0 0 5px;
     cursor: pointer;
@@ -201,4 +201,14 @@
 
 .topbar, .navbar, .add-btn{
     display: none;
+}
+
+.notes-delete-icon,
+.schedules-delete-icon{
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
 }

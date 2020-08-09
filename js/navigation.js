@@ -54,15 +54,7 @@ navbarlinks.map((item, index) => {
         })
 
         if (index !== 0) {
-            let is_it_empty = JSON.parse(localStorage.getItem(`${routes[index]}`));
-
-            if (is_it_empty === null || !is_it_empty.length) {
-                checkForEmpty(`no ${routes[index]}`);
-            } else {
-                removeEmptyScreen();
-                let view = document.querySelector(`.${views[index]}`);
-                view.classList.add('upview');
-            }
+            checkingforexistence(index);
         } else {
             let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
             let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
@@ -204,3 +196,16 @@ backFromForm.addEventListener('click', () => {
         }
     })
 });
+
+function checkingforexistence(index) {
+    let is_it_empty = JSON.parse(localStorage.getItem(`${routes[index]}`));
+
+    if (!is_it_empty.length || is_it_empty === null) {
+        checkForEmpty(`no ${routes[index]}`);
+    }
+    else {
+        removeEmptyScreen();
+        let view = document.querySelector(`.${views[index]}`);
+        view.classList.add('upview');
+    }
+}
