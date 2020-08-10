@@ -35,8 +35,8 @@ const updateEvent = (type) => {
                 addOverlay.classList.toggle('display');
                 isForUpdate = true;
                 schedule.value = updateArr[0].schedule;
-                scheduleDate.value = updateArr[0].date;
-                scheduleTime.value = updateArr[0].time;
+                scheduleDate.value = updateArr[0].schedule_date || updateArr[0].date;
+                scheduleTime.value = updateArr[0].schedule_time || updateArr[0].time;
             }
         })
     })

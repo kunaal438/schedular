@@ -130,6 +130,41 @@ checkBtn.addEventListener('click', () => {
                     navigateToViewAfterCreating(navbarlinks[1], 1);
                     originalValueThatHasToUpdate = [];
             }
+        } else if (currentLocation.includes('schedule')) {
+            const schedule = document.querySelector('#schedule').value;
+            const date = document.querySelector('#schedule-date').value;
+            const time = document.querySelector('#schedule-time').value;
+    
+            if(schedule.length && date.length && time.length){
+                let data = {
+                    old_schedule: originalValueThatHasToUpdate[0].schedule,
+                    old_date: originalValueThatHasToUpdate[0].date,
+                    schedule: schedule,
+                    date: date,
+                    time: time,
+                    email: user.email
+                }
+                fetch('http://schedular-app-438.herokuapp.com/update-schedule', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .catch(err => {
+                        let arr = JSON.parse(localStorage.getItem('hastofetchschedules'));
+                        arr.push(data);
+                        localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
+                    });
+                    let arr = JSON.parse(localStorage.getItem('schedules'));
+                    arr.reverse();
+                    arr.splice(originalValueThatHasToUpdate[1], 1);
+                    arr.reverse();
+                    localStorage.setItem('schedules', JSON.stringify(arr));
+                    addingDataToLocalStorage('schedules', data);
+                    formInputsValueToNull();
+                    creatingSchedules();
+                    navigateToViewAfterCreating(navbarlinks[2], 2);
+            }
         }
     }
 })
