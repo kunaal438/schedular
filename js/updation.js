@@ -6,7 +6,7 @@ const updateEvent = (type) => {
     if (type === 'notes') {
         stacks = [...document.querySelectorAll(`.notes-view .notes .left`)];
     } else if (type === 'schedules') {
-        stacks = [...document.querySelectorAll(`.schedule-view .schedule`)];
+        stacks = [...document.querySelectorAll(`.schedule-view .schedule .left`)];
     } else {
         stacks = [...document.querySelectorAll(`.project-view .project-box`)];
     }
@@ -18,7 +18,7 @@ const updateEvent = (type) => {
             let updateArr = [];
             arr.reverse();
             updateArr.push(arr[index]);
-            arr.splice(index, 1);
+            // arr.splice(index, 1);
             arr.reverse();
             // console.log(index);
             originalValueThatHasToUpdate = [updateArr[0], index];

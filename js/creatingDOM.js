@@ -40,11 +40,13 @@ const creatingSchedules = () => {
 
     data.map(obj => {
         let div = document.createElement('div');
+        let leftDiv = document.createElement('div');
         let p = document.createElement('p');
         let img = document.createElement('img');
 
         parentDiv.appendChild(div);
-        div.appendChild(p);
+        div.appendChild(leftDiv);
+        leftDiv.appendChild(p);
         div.appendChild(img);
         p.appendChild(document.createTextNode(obj.schedule));
         img.setAttribute('src', 'img/delete-icon.png');
@@ -52,6 +54,7 @@ const creatingSchedules = () => {
         img.setAttribute('class', 'schedules-delete-icon');
 
         div.className = 'schedule';
+        leftDiv.className = 'left';
     })
     appendingDeleteBtnEvent('schedules');
     updateEvent('schedules');

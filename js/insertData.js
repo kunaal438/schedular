@@ -119,15 +119,18 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
                     });
-                    let arr = JSON.parse(localStorage.getItem(type));
+                    let arr = JSON.parse(localStorage.getItem('notes'));
                     arr.reverse();
                     arr.splice(originalValueThatHasToUpdate[1], 1);
                     arr.reverse();
+                    localStorage.setItem('notes', JSON.stringify(arr));
                     addingDataToLocalStorage('notes', data);
                     formInputsValueToNull();
                     creatingNotes();
                     navigateToViewAfterCreating(navbarlinks[1], 1);
+                    originalValueThatHasToUpdate = [];
             }
+        }
     }
 })
 
