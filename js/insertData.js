@@ -8,6 +8,11 @@ const formInputsArr = [
 ];
 let noteForm = document.querySelector('.notes-area');
 
+
+let schedule = document.querySelector('#schedule');
+let scheduleDate = document.querySelector('#schedule-date');
+let scheduleTime = document.querySelector('#schedule-time');
+
 let isForUpdate = false;
 
 checkBtn.addEventListener('click', () => {
@@ -94,6 +99,35 @@ checkBtn.addEventListener('click', () => {
                     navigateToViewAfterCreating(navbarlinks[3], 3);
             }
         }
+    } else{
+        if (currentLocation.includes('note')) {
+            const noteForm = document.querySelector('.notes-area').value;
+            if (noteForm.length) {
+                let data = {
+                    old_note: originalValueThatHasToUpdate[0].note,
+                    note: noteForm,
+                    email: user.email
+                }
+                fetch('http://schedular-app-438.herokuapp.com/update-notes', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .catch(err => {
+                        let arr = JSON.parse(localStorage.getItem('hastofetchnotes'));
+                        arr.push(data);
+                        localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
+                    });
+                    let arr = JSON.parse(localStorage.getItem(type));
+                    arr.reverse();
+                    arr.splice(originalValueThatHasToUpdate[1], 1);
+                    arr.reverse();
+                    addingDataToLocalStorage('notes', data);
+                    formInputsValueToNull();
+                    creatingNotes();
+                    navigateToViewAfterCreating(navbarlinks[1], 1);
+            }
     }
 })
 

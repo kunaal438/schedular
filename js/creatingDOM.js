@@ -54,6 +54,7 @@ const creatingSchedules = () => {
         div.className = 'schedule';
     })
     appendingDeleteBtnEvent('schedules');
+    updateEvent('schedules');
 }
 
 const creatingProjects = () => {

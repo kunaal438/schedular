@@ -195,6 +195,9 @@ backFromForm.addEventListener('click', () => {
             currentLocation = routes[i];
         }
     })
+        isForUpdate = false;
+        updateEvent('notes');
+
 });
 
 function checkingforexistence(index) {
