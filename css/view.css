@@ -1,7 +1,8 @@
 .home-view,
 .notes-view,
 .schedule-view,
-.project-view{
+.project-view,
+.todo-view{
     width: 100%;
     height: 100%;
     padding: 20px 10vw;
@@ -12,6 +13,7 @@
     display: none;
     background: #fff;
     padding-bottom: 120px;
+    /* backface-visibility: hidden; */
 }
 
 .notes-form,
@@ -59,11 +61,15 @@
 .project-box{
     position: relative;
     width: 100%;
-    height: 30px;
     padding: 5px 20px;
     background: #ffc6c6;
     margin-bottom: 10px;
     font-family: galada;
+}
+
+.notes,
+.schedule{
+    height: 30px;
 }
 
 .notes .left,
@@ -96,8 +102,10 @@
 
 .project-info{
     line-height: 15px;
+    word-break: break-all;
     max-height: 45px;
     overflow: hidden;
+    margin: 15px 0;
 }
 
 .projects-delete-icon{
@@ -218,4 +226,135 @@
     right: 11px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+/* todo view */
+
+.todo-view .heading{
+    width: 100%;
+    margin-top: 30px;
+    /* background: #f00; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0;
+}
+
+.todo-view .heading p{
+    width: 50%;
+    text-align-last: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.todo-view .heading img{
+    margin-left: auto;
+    cursor: pointer;
+    height: 25px;
+}
+
+.todo_input{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 10px;
+    height: 40px;
+    border: 1.5px solid #000;
+    overflow: hidden;
+}
+
+.todo_input input{
+    width: 85%;
+    height: 60px !important;
+    padding-left: 10px !important;
+    padding-top: 10px !important;
+}
+
+.todo_input div{
+    width: 15%;
+    background: #f00;
+    text-align: center;
+    line-height: 55px;
+    height: 60px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.project-todo{
+    width: 100%;
+}
+
+.project-todo .title{
+    text-transform: capitalize;
+    font-size: 30px;
+    word-wrap: break-word;
+}
+
+.project-todo .todo-stack{
+    width: 100%;
+    margin-bottom: 10px;
+    height: fit-content;
+    background: #ffc6c6;
+    padding: 5px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.todo-stack p{
+    width: 70%;
+    padding-left: 20px;
+    font-size: 16px;
+    font-family: galada;
+    word-wrap: break-word;
+}
+
+.todo-stack div{
+    display: flex;
+    justify-content: flex-end;
+    /* background: #000; */
+    align-items: center;
+    /* background: #fff; */
+    width: 30%;
+    height: 100%;
+}
+
+.todo-stack .delete-todo,
+.todo-stack .check-todo{
+    width: 20px !important;
+    /* background: #000; */
+    margin: 0 10px;
+    cursor: pointer;
+    /* margin-left: auto; */
+}
+
+.down_bar{
+    position: fixed;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    z-index: 7;
+    height: 50px;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10vw;
+    background-color: #ebebeb;
+}
+
+.down_bar p{
+    width: 30%;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    height: 100%;
+    line-height: 40px;
+}
+
+.down_bar p.active{
+    border-top: 2px solid #f00;
 }

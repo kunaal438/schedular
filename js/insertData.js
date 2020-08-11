@@ -13,6 +13,11 @@ let schedule = document.querySelector('#schedule');
 let scheduleDate = document.querySelector('#schedule-date');
 let scheduleTime = document.querySelector('#schedule-time');
 
+
+let project_title = document.querySelector('#title');
+let project_des = document.querySelector('#description');
+let project_date = document.querySelector('#date');
+
 let isForUpdate = false;
 
 checkBtn.addEventListener('click', () => {

@@ -64,6 +64,7 @@ function homeViewSetup() {
     checkingfornotesinsertion();
     checkingforschedulesinsertion();
     checkingforprojectsinsertion();
+    checkingfortodoinsertion();
     let note = JSON.parse(localStorage.getItem('notes'));
     if (note !== null) {
         creatingNotes();
@@ -103,6 +104,30 @@ const checkingfornotesinsertion = () => {
                     .then(data => {
                         if (i === note.length - 1) {
                             localStorage.setItem('hastofetchnotes', JSON.stringify([]));
+                        }
+                    })
+                    .catch(err => console.log(err));
+            })
+        }
+    }
+}
+
+const checkingfortodoinsertion = () => {
+    let todo = JSON.parse(localStorage.getItem('hastofetchtodo'));
+    if (todo === null) {
+        localStorage.setItem('hastofetchtodo', JSON.stringify([]));
+    } else {
+        if (todo.length) {
+            todo.map((obj, i) => {
+                fetch('http://schedular-app-438.herokuapp.com/insert-todo', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify(obj)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (i === todo.length - 1) {
+                            localStorage.setItem('hastofetchtodo', JSON.stringify([]));
                         }
                     })
                     .catch(err => console.log(err));

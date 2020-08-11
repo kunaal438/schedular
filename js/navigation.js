@@ -16,7 +16,8 @@ const views = [
     'home-view',
     'notes-view',
     'schedule-view',
-    'project-view'
+    'project-view',
+    'todo-view'
 ];
 
 
@@ -52,7 +53,7 @@ navbarlinks.map((item, index) => {
             let view = document.querySelector(`.${obj}`);
             view.classList.remove('upview');
         })
-
+        resetTodo();
         if (index !== 0) {
             checkingforexistence(index);
         } else {
@@ -75,25 +76,25 @@ navbarlinks.map((item, index) => {
 })
 
 const appendingFuncToLink = (obj, index) => {
-        let link = document.querySelector(`.${obj}`);
-        link.addEventListener('click', () => {
-            navbarlinks.map((links, i) => {
-                links.classList.remove('active');
-                if (i === index + 1) {
-                    links.classList.add('active');
-                }
-            })
-            routeHeader.innerHTML = `${routes[index + 1]}`;
-            currentLocation = `${routes[index]}`;
-            // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
-            views.map(obj => {
-                let view = document.querySelector(`.${obj}`);
-                view.classList.remove('upview');
-            })
-    
-            let view = document.querySelector(`.${views[index + 1]}`);
-            view.classList.add('upview');
+    let link = document.querySelector(`.${obj}`);
+    link.addEventListener('click', () => {
+        navbarlinks.map((links, i) => {
+            links.classList.remove('active');
+            if (i === index + 1) {
+                links.classList.add('active');
+            }
         })
+        routeHeader.innerHTML = `${routes[index + 1]}`;
+        currentLocation = `${routes[index]}`;
+        // emptyHeader.innerHTML = `${emptyInfoArr[index]}`;
+        views.map(obj => {
+            let view = document.querySelector(`.${obj}`);
+            view.classList.remove('upview');
+        })
+
+        let view = document.querySelector(`.${views[index + 1]}`);
+        view.classList.add('upview');
+    })
 }
 
 noteFormLink.addEventListener('click', () => {
@@ -173,14 +174,16 @@ backFromForm.addEventListener('click', () => {
             let view = document.querySelector(`.${views[i]}`);
             let is_it_empty = JSON.parse(localStorage.getItem(`${routes[i]}`));
 
-            if (i !== 0 && is_it_empty === null) {
-                if(i === 0){
+            downBar.style.display = null;
+            if (i !== 0 && !is_it_empty.length) {
+                if (i === 0) {
                     checkForEmpty(`empty inbox`);
-                } else{
+                } else {
                     checkForEmpty(`no ${routes[i]}`);
                 }
-                
-            } else {
+
+            }
+            else {
                 removeEmptyScreen();
                 homeScreenDOMCreation();
                 view.classList.add('upview');
@@ -193,10 +196,26 @@ backFromForm.addEventListener('click', () => {
             addOverlay.style.display = null;
             formTopBar.style.display = null;
             currentLocation = routes[i];
+        } else {
+            views.map(obj => {
+                let view = document.querySelector(`.${obj}`);
+                view.classList.remove('upview');
+            })
+            downBar.style.display = 'flex';
+            let view = document.querySelector(`.${views[4]}`);
+            view.classList.add('upview');
+            routeHeader.innerHTML = `Todo`;
+
+            formInputsValueToNull();
+            bottomBar.style.height = null;
+            bottomBar.style.display = 'block';
+            // addBtn.style.display = 'block';
+            addOpt.style.display = null;
+            addOverlay.style.display = null;
+            formTopBar.style.display = null;
+            currentLocation = 'todo';
         }
     })
-        isForUpdate = false;
-        updateEvent('notes');
 
 });
 
@@ -211,4 +230,12 @@ function checkingforexistence(index) {
         let view = document.querySelector(`.${views[index]}`);
         view.classList.add('upview');
     }
+}
+
+const resetTodo = () => {
+    downBar.style.display = null;
+    addBtn.style.display = 'block';
+    addOpt.style.display = null;
+    addOverlay.style.display = null;
+    isForUpdate = false;
 }

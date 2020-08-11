@@ -26,6 +26,10 @@
     cursor: pointer;
 }
 
+.navbar .items .links img{
+    width: 30px;
+}
+
 .navbar .items .links.active{
     border-top: 3px solid #f00;
 }
