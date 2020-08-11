@@ -3,6 +3,7 @@ let originalValueThatHasToUpdate = [];
 
 // let todoView = document.querySelector('.todo-view');
 let downBar = document.querySelector('.down_bar');
+let todoview = false;
 
 const updateEvent = (type) => {
     let stacks;
@@ -55,6 +56,7 @@ const updateEvent = (type) => {
                 // console.log(title.innerHTML);
                 title.innerHTML = originalValueThatHasToUpdate[0].title;
                 createTodoStack();
+                todoview = true;
 
 
                 // todo_function

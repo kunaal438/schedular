@@ -1,5 +1,11 @@
 const appendingDeleteBtnEvent = (type) => {
-    let delete_btns = [...document.querySelectorAll(`.${type}-delete-icon`)];
+    let delete_btns;
+    if(type === 'todo') {
+        delete_btns = [...document.querySelectorAll(`.delete-todo`)];
+    } else{
+        delete_btns = [...document.querySelectorAll(`.${type}-delete-icon`)];
+    }
+    
 
     // console.log(delete_btns);
 
@@ -55,6 +61,19 @@ const appendingDeleteBtnEvent = (type) => {
                 // .then(success => console.log(true));
                 creatingProjects();
                 checkingforexistence(3);
+            } else if (type === 'todo'){
+                fetch('http://schedular-app-438.herokuapp.com/del-todo', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify({
+                        todo: delArr[0].todo,
+                        title: delArr[0].title,
+                        email: delArr[0].email
+                    })
+                })
+                .then(res => res.json())
+                // .then(success => console.log(true));
+                createTodoStack();
             }
         })
     })

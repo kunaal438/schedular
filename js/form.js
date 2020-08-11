@@ -40,7 +40,7 @@ const email = document.querySelector('#registeremail').value;
 const password = document.querySelector('#registerpassword').value;
 
 registerBtn.addEventListener('click', () => {
-    
+
     const username = document.querySelector('#username').value;
     const email = document.querySelector('#registeremail').value;
     const password = document.querySelector('#registerpassword').value;
@@ -162,15 +162,27 @@ logInBtn.addEventListener('click', () => {
                                     })
                                 })
                                     .then(res => res.json())
-                                    .then(projects => {
+                                    .then(projects => { 
                                         localStorage.setItem('projects', JSON.stringify(projects));
-                                        isloggedIn = true;
-                                        loginpage.style.display = null;
-                                        registerpage.style.display = null;
-                                        loading.style.display = null;
-                                        // console.log('yes');
-                                        homeViewSetup();
-                                        logInErr.innerHTML = '';
+                                        fetch('http://schedular-app-438.herokuapp.com/todos', {
+                                            method: 'post',
+                                            headers: new Headers({ 'Content-Type': 'application/json' }),
+                                            body: JSON.stringify({
+                                                email: data.email
+                                            })
+                                        })
+                                            .then(res => res.json())
+                                            .then(todos => {
+                                                localStorage.setItem('todo', JSON.stringify(todos));
+                                                isloggedIn = true;
+                                                loginpage.style.display = null;
+                                                registerpage.style.display = null;
+                                                loading.style.display = null;
+                                                downBar.style.display = null;
+                                                // console.log('yes');
+                                                homeViewSetup();
+                                                logInErr.innerHTML = '';
+                                            })
                                     })
                             })
                         // homeScreenDOMCreation();

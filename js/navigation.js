@@ -196,7 +196,10 @@ backFromForm.addEventListener('click', () => {
             addOverlay.style.display = null;
             formTopBar.style.display = null;
             currentLocation = routes[i];
-        } else {
+        }
+    })
+
+    if(todoview){
             views.map(obj => {
                 let view = document.querySelector(`.${obj}`);
                 view.classList.remove('upview');
@@ -214,8 +217,7 @@ backFromForm.addEventListener('click', () => {
             addOverlay.style.display = null;
             formTopBar.style.display = null;
             currentLocation = 'todo';
-        }
-    })
+    }
 
 });
 
@@ -238,4 +240,5 @@ const resetTodo = () => {
     addOpt.style.display = null;
     addOverlay.style.display = null;
     isForUpdate = false;
+    todoview = false;
 }

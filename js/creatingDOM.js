@@ -114,26 +114,30 @@ const createTodoStack = () => {
     })
     arr.reverse();
 
-    arr.map(obj => {
-        let div = document.createElement('div');
-        let p = document.createElement('p');
-        let btn_box = document.createElement('div');
-        let del = document.createElement('img');
-        let check = document.createElement('img');
-
-        parentDiv.appendChild(div);
-        div.appendChild(p);
-        p.appendChild(document.createTextNode(obj.todo));
-        div.appendChild(btn_box);
-        btn_box.appendChild(del);
-        btn_box.appendChild(check);
-
-        del.setAttribute('src', 'img/delete-icon.png');
-        del.setAttribute('class', 'delete-todo');
-
-        check.setAttribute('src', 'img/check.png');
-        check.setAttribute('class', 'check-todo');
-
-        div.className = 'todo-stack';
-    })
+    if(arr.length){
+        arr.map(obj => {
+            let div = document.createElement('div');
+            let p = document.createElement('p');
+            let btn_box = document.createElement('div');
+            let del = document.createElement('img');
+            let check = document.createElement('img');
+    
+            parentDiv.appendChild(div);
+            div.appendChild(p);
+            p.appendChild(document.createTextNode(obj.todo));
+            div.appendChild(btn_box);
+            btn_box.appendChild(del);
+            btn_box.appendChild(check);
+    
+            del.setAttribute('src', 'img/delete-icon.png');
+            del.setAttribute('class', 'delete-todo');
+    
+            check.setAttribute('src', 'img/check.png');
+            check.setAttribute('class', 'check-todo');
+    
+            div.className = 'todo-stack';
+        })
+    }
+    
+    appendingDeleteBtnEvent('todo');
 }
