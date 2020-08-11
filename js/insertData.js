@@ -177,11 +177,11 @@ checkBtn.addEventListener('click', () => {
     
             if(title.length && description.length && date.length){
                 let data = {
+                    old_title: originalValueThatHasToUpdate[0].title,
                     title: title,
                     date: date,
                     des: description,
-                    email: user.email,
-                    old_title: originalValueThatHasToUpdate[0].title
+                    email: user.email
                 };
                 fetch('http://schedular-app-438.herokuapp.com/update-project', {
                     method: 'post',
