@@ -170,6 +170,40 @@ checkBtn.addEventListener('click', () => {
                     creatingSchedules();
                     navigateToViewAfterCreating(navbarlinks[2], 2);
             }
+        } else if(currentLocation.includes('project')){
+            const title = document.querySelector('#title').value;
+            const description = document.querySelector('#description').value;
+            const date = document.querySelector('#date').value;
+    
+            if(title.length && description.length && date.length){
+                let data = {
+                    title: title,
+                    date: date,
+                    des: description,
+                    email: user.email,
+                    old_title: originalValueThatHasToUpdate[0].title
+                };
+                fetch('http://schedular-app-438.herokuapp.com/update-project', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .catch(err => {
+                        let arr = JSON.parse(localStorage.getItem('hastofetchprojects'));
+                        arr.push(data);
+                        localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
+                    })
+                    let arr = JSON.parse(localStorage.getItem('projects'));
+                    arr.reverse();
+                    arr.splice(originalValueThatHasToUpdate[1], 1);
+                    arr.reverse();
+                    localStorage.setItem('projects', JSON.stringify(arr));
+                    addingDataToLocalStorage('projects', data);
+                    formInputsValueToNull();
+                    creatingProjects();
+                    navigateToViewAfterCreating(navbarlinks[3], 3);
+            }
         }
     }
 })
