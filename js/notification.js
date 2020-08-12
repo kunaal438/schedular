@@ -28,12 +28,20 @@ const scheduleNotification = (date, time) => {
         hour = Number(12+hour);
     }
 
+    var triggerdate = new Date()
+    triggerdate.setFullYear(year);
+    triggerdate.setMonth(month);
+    triggerdate.setDate(today);
+    triggerdate.setHours(hour);
+    triggerdate.setMinutes(min);
+    triggerdate.setSeconds(0);
+
     cordova.plugins.notification.local.schedule({
         title: 'Schedule',
         text: text,
         foreground: false,
         vibrate: true,
-        trigger: {at: new Date(year, month, today, hour, min)},
+        trigger: {at: triggerdate},
         icon: 'res://mipmap/icon.png'
     });
     // console.log(hour, min);
