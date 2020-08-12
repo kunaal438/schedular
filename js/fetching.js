@@ -51,9 +51,9 @@ const checkingfornotesdel = () => {
 }
 
 const checkingfornotesupdate = () => {
-    let note = JSON.parse(localStorage.getItem('hastuopdatenotes'));
+    let note = JSON.parse(localStorage.getItem('hastoupdatenotes'));
     if (note === null) {
-        localStorage.setItem('hastuopdatenotes', JSON.stringify([]));
+        localStorage.setItem('hastoupdatenotes', JSON.stringify([]));
     } else {
         if (note.length) {
             note.map((obj, i) => {
@@ -69,7 +69,7 @@ const checkingfornotesupdate = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (i === note.length - 1) {
-                            localStorage.setItem('hastopdatenotes', JSON.stringify([]));
+                            localStorage.setItem('hastoupdatenotes', JSON.stringify([]));
                         }
                     })
                     .catch(err => console.log(err));

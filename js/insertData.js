@@ -71,6 +71,7 @@ checkBtn.addEventListener('click', () => {
                         localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
                     });
                 addingDataToLocalStorage('schedules', data);
+                scheduleNotification(data.schedule, data.date, data.time);
                 formInputsValueToNull();
                 creatingSchedules();
                 navigateToViewAfterCreating(navbarlinks[2], 2);
@@ -99,6 +100,7 @@ checkBtn.addEventListener('click', () => {
                         localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
                     })
                 addingDataToLocalStorage('projects', data);
+                projectNotification(data.date, data.title);
                 formInputsValueToNull();
                 creatingProjects();
                 navigateToViewAfterCreating(navbarlinks[3], 3);
@@ -120,9 +122,9 @@ checkBtn.addEventListener('click', () => {
                 })
                     .then(res => res.json())
                     .catch(err => {
-                        let arr = JSON.parse(localStorage.getItem('hastuopdatenotes'));
+                        let arr = JSON.parse(localStorage.getItem('hastoupdatenotes'));
                         arr.push(data);
-                        localStorage.setItem('hastuopdatenotes', JSON.stringify(arr));
+                        localStorage.setItem('hastoupdatenotes', JSON.stringify(arr));
                     });
                 let arr = JSON.parse(localStorage.getItem('notes'));
                 arr.reverse();
@@ -166,6 +168,7 @@ checkBtn.addEventListener('click', () => {
                 arr.reverse();
                 localStorage.setItem('schedules', JSON.stringify(arr));
                 addingDataToLocalStorage('schedules', data);
+                scheduleNotification(data.schedule, data.date, data.time);
                 formInputsValueToNull();
                 creatingSchedules();
                 navigateToViewAfterCreating(navbarlinks[2], 2);
@@ -227,6 +230,7 @@ checkBtn.addEventListener('click', () => {
                 arr.reverse();
                 localStorage.setItem('projects', JSON.stringify(arr));
                 addingDataToLocalStorage('projects', data);
+                projectNotification(data.date, data.title);
                 formInputsValueToNull();
                 creatingProjects();
                 navigateToViewAfterCreating(navbarlinks[3], 3);
