@@ -28,9 +28,8 @@ const settingUpView = () => {
 
 window.onload = () => {
     settingUpView();
+    document.addEventListener("backbutton", backButtonPressed, false);
 }
-
-document.addEventListener("backbutton", backButtonPressed, false);
 
 const backButtonPressed = () => {
     if(formTopBar.style.display === 'flex'){
