@@ -27,7 +27,7 @@
     </application>
   </gap:config-file>
 
-  <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+  <gap:plugin name="cordova-plugin-local-notification" source="npm"/>
 
   <access origin="*" />
   <allow-navigation href="*" />
