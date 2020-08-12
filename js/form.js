@@ -199,6 +199,7 @@ logInBtn.addEventListener('click', () => {
             }
         })
         .catch(err => {
+            loading.style.display = null;
             logInErr.innerHTML = 'error while fetching to server may be a network issue';
         })
 })
