@@ -33,7 +33,7 @@
   <allow-navigation href="*" />
   <allow-intent href="*" />
 
-  <gap:plugin name="cordova.plugin.local-notification" />
+  <!-- <gap:plugin name="cordova.plugin.local-notification" /> -->
   
   <author href="https://build.phonegap.com" email="kunaal438@gmail.com">
     kunaal kumar    
