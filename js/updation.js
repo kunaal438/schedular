@@ -8,9 +8,9 @@ let todoview = false;
 const updateEvent = (type) => {
     let stacks;
     if (type === 'notes') {
-        stacks = [...document.querySelectorAll(`.notes-view .notes .left`)];
+        stacks = [...document.querySelectorAll(`.notes-view .notes div`)];
     } else if (type === 'schedules') {
-        stacks = [...document.querySelectorAll(`.schedule-view .schedule .left`)];
+        stacks = [...document.querySelectorAll(`.schedule-view .schedule div`)];
     } else {
         stacks = [...document.querySelectorAll(`.project-view .project-box div`)];
     }
@@ -25,9 +25,10 @@ const updateEvent = (type) => {
             // arr.splice(index, 1);
             arr.reverse();
             // console.log(index);
-            originalValueThatHasToUpdate = [updateArr[0], index];
+
             if (type === 'notes') {
                 noteFormLink.click();
+                originalValueThatHasToUpdate = [updateArr[0], index];
                 addOpt.classList.toggle('display');
                 addOverlay.classList.toggle('display');
                 isForUpdate = true;
@@ -35,6 +36,7 @@ const updateEvent = (type) => {
                 noteForm.value = updateArr[0].note;
             } else if (type === 'schedules') {
                 scheduleFormLink.click();
+                originalValueThatHasToUpdate = [updateArr[0], index];
                 addOpt.classList.toggle('display');
                 addOverlay.classList.toggle('display');
                 isForUpdate = true;
@@ -42,6 +44,8 @@ const updateEvent = (type) => {
                 scheduleDate.value = updateArr[0].schedule_date || updateArr[0].date;
                 scheduleTime.value = updateArr[0].schedule_time || updateArr[0].time;
             } else if (type === 'projects') {
+
+                originalValueThatHasToUpdate = [updateArr[0], index];
                 views.map(obj => {
                     let view = document.querySelector(`.${obj}`);
                     view.classList.remove('upview');
@@ -67,8 +71,8 @@ const updateEvent = (type) => {
                     projectFormLink.click();
                     addOpt.classList.toggle('display');
                     addOverlay.classList.toggle('display');
-                    
-            downBar.style.display = null;
+
+                    downBar.style.display = null;
                     isForUpdate = true;
                     project_title.value = originalValueThatHasToUpdate[0].title;
                     project_des.value = originalValueThatHasToUpdate[0].des;
@@ -82,32 +86,32 @@ const updateEvent = (type) => {
                     // console.log('click');
                     let inputValue = document.querySelector('.todo_input input');
 
-                    if(inputValue.value.length){
+                    if (inputValue.value.length) {
                         // console.log(true);
 
                         let data = {
                             todo: inputValue.value,
                             title: originalValueThatHasToUpdate[0].title,
                             email: user.email,
-                            status: 'not-done' 
+                            status: 'not-done'
                         }
 
                         fetch('http://schedular-app-438.herokuapp.com/insert-todo', {
                             method: 'post',
-                            headers: new Headers({ 'Content-Type': 'application/json'}),
+                            headers: new Headers({ 'Content-Type': 'application/json' }),
                             body: JSON.stringify(data)
                         })
-                        .then(res => res.json())
-                        .catch(err => {
-                            let arr = JSON.parse(localStorage.getItem('hastofetchtodo'));
-                            arr.push(data);
-                            localStorage.setItem('hastofetchtodo', JSON.stringify(arr));
-                        })
+                            .then(res => res.json())
+                            .catch(err => {
+                                let arr = JSON.parse(localStorage.getItem('hastofetchtodo'));
+                                arr.push(data);
+                                localStorage.setItem('hastofetchtodo', JSON.stringify(arr));
+                            })
 
                         addingDataToLocalStorage('todo', data);
                         createTodoStack();
                         inputValue.value = '';
-                    } else{
+                    } else {
                         console.log(false);
                     }
                 })

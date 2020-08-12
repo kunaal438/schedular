@@ -23,7 +23,7 @@ const creatingNotes = () => {
         img.setAttribute('class', 'notes-delete-icon');
 
         div.className = 'notes';
-        leftDiv.className = 'left';
+        // leftDiv.className = 'left';
     })
     appendingDeleteBtnEvent('notes');
     updateEvent('notes');
@@ -54,7 +54,7 @@ const creatingSchedules = () => {
         img.setAttribute('class', 'schedules-delete-icon');
 
         div.className = 'schedule';
-        leftDiv.className = 'left';
+        // leftDiv.className = 'left';
     })
     appendingDeleteBtnEvent('schedules');
     updateEvent('schedules');

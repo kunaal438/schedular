@@ -98,6 +98,8 @@ const appendingFuncToLink = (obj, index) => {
 }
 
 noteFormLink.addEventListener('click', () => {
+    originalValueThatHasToUpdate = [];
+    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
@@ -121,6 +123,8 @@ noteFormLink.addEventListener('click', () => {
 });
 
 scheduleFormLink.addEventListener('click', () => {
+    originalValueThatHasToUpdate = [];
+    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
@@ -143,6 +147,8 @@ scheduleFormLink.addEventListener('click', () => {
 });
 
 projectFormLink.addEventListener('click', () => {
+    originalValueThatHasToUpdate = [];
+    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
