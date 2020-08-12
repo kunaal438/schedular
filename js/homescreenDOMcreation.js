@@ -77,20 +77,20 @@ const homeScreenDOMCreation = () => {
             for (let i = 0; i < loopIntervals; i++) {
                 if (all_schedules[i] !== undefined) {
                     let div = document.createElement('div');
-        let leftDiv = document.createElement('div');
-        let p = document.createElement('p');
-        let img = document.createElement('img');
+                    let leftDiv = document.createElement('div');
+                    let p = document.createElement('p');
+                    let img = document.createElement('img');
 
-        parentDiv.appendChild(div);
-        div.appendChild(leftDiv);
-        leftDiv.appendChild(p);
-        div.appendChild(img);
-        p.appendChild(document.createTextNode(all_schedules[i].schedule));
-        img.setAttribute('src', 'img/delete-icon.png');
-        img.setAttribute('alt', 'delete icon');
-        img.setAttribute('class', 'home-schedules-delete-icon');
+                    parentDiv.appendChild(div);
+                    div.appendChild(leftDiv);
+                    leftDiv.appendChild(p);
+                    div.appendChild(img);
+                    p.appendChild(document.createTextNode(all_schedules[i].schedule));
+                    img.setAttribute('src', 'img/delete-icon.png');
+                    img.setAttribute('alt', 'delete icon');
+                    img.setAttribute('class', 'home-schedules-delete-icon');
 
-        div.className = 'schedule';
+                    div.className = 'schedule';
                 }
                 if (i === loopIntervals - 1 && all_schedules.length > loopIntervals) {
                     let a = document.createElement('a');
@@ -132,6 +132,7 @@ const homeScreenDOMCreation = () => {
         for (let i = 0; i < loopIntervals; i++) {
             if (all_projects[i] !== undefined) {
                 let div = document.createElement('div');
+                let div2 = document.createElement('div');
                 let h5 = document.createElement('h5');
                 let p = document.createElement('p');
 
@@ -139,15 +140,16 @@ const homeScreenDOMCreation = () => {
                 let date = document.createElement('p');
 
                 parentDiv.appendChild(div);
-                div.appendChild(h5);
-                div.appendChild(p);
+                div.appendChild(div2);
+                div2.appendChild(h5);
+                div2.appendChild(p);
                 div.appendChild(img);
-                div.appendChild(date);
+                div2.appendChild(date);
                 h5.appendChild(document.createTextNode(all_projects[i].title));
                 p.appendChild(document.createTextNode(all_projects[i].des));
                 img.setAttribute('src', 'img/delete-icon.png');
                 img.setAttribute('alt', 'delete icon');
-                img.setAttribute('class', 'home-projects-delete-icon');
+                img.setAttribute('class', 'projects-delete-icon');
                 date.appendChild(document.createTextNode(`lat date :- ${all_projects[i].date}`))
 
                 div.className = 'project-box';
@@ -169,4 +171,8 @@ const homeScreenDOMCreation = () => {
     appendingHomeDeleteBtnEvent('home-notes');
     appendingHomeDeleteBtnEvent('home-schedules');
     appendingHomeDeleteBtnEvent('home-projects');
+
+    updateEvent('home-notes');
+    updateEvent('home-schedules');
+    updateEvent('home-projects');
 }

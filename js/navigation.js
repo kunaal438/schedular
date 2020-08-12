@@ -53,6 +53,8 @@ navbarlinks.map((item, index) => {
             let view = document.querySelector(`.${obj}`);
             view.classList.remove('upview');
         })
+        originalValueThatHasToUpdate = [];
+        isForUpdate = false;
         resetTodo();
         if (index !== 0) {
             checkingforexistence(index);
@@ -98,8 +100,6 @@ const appendingFuncToLink = (obj, index) => {
 }
 
 noteFormLink.addEventListener('click', () => {
-    originalValueThatHasToUpdate = [];
-    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
@@ -123,8 +123,6 @@ noteFormLink.addEventListener('click', () => {
 });
 
 scheduleFormLink.addEventListener('click', () => {
-    originalValueThatHasToUpdate = [];
-    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
@@ -147,8 +145,6 @@ scheduleFormLink.addEventListener('click', () => {
 });
 
 projectFormLink.addEventListener('click', () => {
-    originalValueThatHasToUpdate = [];
-    isForUpdate = false;
     bottomBar.style.height = `0px`;
     bottomBar.style.display = 'none';
     addBtn.style.display = 'none';
@@ -204,6 +200,11 @@ backFromForm.addEventListener('click', () => {
             currentLocation = routes[i];
         }
     })
+
+    if(isForUpdate && !todoview){
+        originalValueThatHasToUpdate = [];
+        isForUpdate = false;
+    }
 
     if(todoview){
             views.map(obj => {

@@ -15,6 +15,17 @@ const updateEvent = (type) => {
         stacks = [...document.querySelectorAll(`.project-view .project-box div`)];
     }
 
+    if(type === 'home-notes'){
+        stacks = [...document.querySelectorAll(`.home-view .notes div`)];
+        type = 'notes';
+    } else if(type === 'home-schedules'){
+        stacks = [...document.querySelectorAll(`.home-view .schedule div`)];
+        type = 'schedules';
+    } else if(type === 'home-projects'){
+        stacks = [...document.querySelectorAll(`.home-view .project-box div`)];
+        type = 'projects';
+    }
+
     // console.log(stacks);
     stacks.map((item, index) => {
         item.addEventListener('click', () => {

@@ -124,8 +124,7 @@
 }
 
 .account-box h6:first-child::after,
-.add-options h6:nth-child(1)::after,
-.add-options h6:nth-child(2)::after{
+.add-options h6:nth-child(1)::after{
     content: '';
     position: absolute;
     bottom: -10px;
