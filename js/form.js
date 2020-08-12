@@ -210,20 +210,7 @@ const signOutBtn = document.querySelector('.sign-out-btn');
 
 signOutBtn.addEventListener('click', () => {
     localStorage.clear();
-    accountBox.classList.toggle('display');
-    accountOverlay.classList.toggle('display');
-    allInputValueToNull();
-    loginpage.style.display = 'flex';
-    currentLocation = routes[0];
-    navbarlinks.map(link => {
-        link.classList.remove('active');
-    })
-    routeHeader.innerHTML = `${routes[0]}`;
-    navbarlinks[0].classList.add('active');
-    views.map(obj => {
-        let view = document.querySelector(`.${obj}`);
-        view.classList.remove('upview');
-    })
+    location.reload()
 })
 
 const allInputsArr = [

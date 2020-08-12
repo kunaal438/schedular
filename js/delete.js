@@ -1,11 +1,11 @@
 const appendingDeleteBtnEvent = (type) => {
     let delete_btns;
-    if(type === 'todo') {
+    if (type === 'todo') {
         delete_btns = [...document.querySelectorAll(`.delete-todo`)];
-    } else{
+    } else {
         delete_btns = [...document.querySelectorAll(`.${type}-delete-icon`)];
     }
-    
+
 
     // console.log(delete_btns);
 
@@ -13,15 +13,34 @@ const appendingDeleteBtnEvent = (type) => {
         item.addEventListener('click', () => {
             let arr = JSON.parse(localStorage.getItem(type));
             let delArr = [];
-            arr.reverse();
-            delArr.push(arr[index]);
-            arr.splice(index, 1);
-            arr.reverse();
+            let sortedArr = [];
+
+            if (type === 'todo') {
+                arr = arr.filter(obj => {
+                    if (obj.title === originalValueThatHasToUpdate[0].title) {
+                        sortedArr.push(obj);
+                    } else {
+                        return obj;
+                    }
+                })
+                sortedArr.reverse();
+                delArr.push(sortedArr[index]);
+                sortedArr.splice(index, 1);
+                sortedArr.reverse();
+                sortedArr.map(obj => {
+                    arr.push(obj);
+                })
+            } else {
+                arr.reverse();
+                delArr.push(arr[index]);
+                arr.splice(index, 1);
+                arr.reverse();
+            }
 
             localStorage.setItem(type, JSON.stringify(arr));
             // console.log(arr);
             // console.log(delArr[0]);
-            if(type === 'notes'){
+            if (type === 'notes') {
                 fetch('http://schedular-app-438.herokuapp.com/del-note', {
                     method: 'post',
                     headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -30,11 +49,11 @@ const appendingDeleteBtnEvent = (type) => {
                         email: delArr[0].email
                     })
                 })
-                .then(res => res.json())
+                    .then(res => res.json())
                 // .then(success => console.log(true));
                 creatingNotes();
                 checkingforexistence(1);
-            } else if (type === 'schedules'){
+            } else if (type === 'schedules') {
                 fetch('http://schedular-app-438.herokuapp.com/del-schedules', {
                     method: 'post',
                     headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -43,11 +62,11 @@ const appendingDeleteBtnEvent = (type) => {
                         email: delArr[0].email
                     })
                 })
-                .then(res => res.json())
+                    .then(res => res.json())
                 // .then(success => console.log(true));
                 creatingSchedules();
                 checkingforexistence(2);
-            } else if (type === 'projects'){
+            } else if (type === 'projects') {
                 fetch('http://schedular-app-438.herokuapp.com/del-project', {
                     method: 'post',
                     headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -57,11 +76,20 @@ const appendingDeleteBtnEvent = (type) => {
                         des: delArr[0].des
                     })
                 })
-                .then(res => res.json())
-                // .then(success => console.log(true));
+                    .then(res => res.json())
+                    .then(success => console.log(true));
+                let storage = JSON.parse(localStorage.getItem('todo'));
+                let arr = [];
+                storage.map(item => {
+                    if (item.title !== delArr[0].title) {
+                        arr.push(item);
+                    }
+                })
+
+                localStorage.setItem('todo', JSON.stringify(arr));
                 creatingProjects();
                 checkingforexistence(3);
-            } else if (type === 'todo'){
+            } else if (type === 'todo') {
                 fetch('http://schedular-app-438.herokuapp.com/del-todo', {
                     method: 'post',
                     headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -71,7 +99,7 @@ const appendingDeleteBtnEvent = (type) => {
                         email: delArr[0].email
                     })
                 })
-                .then(res => res.json())
+                    .then(res => res.json())
                 // .then(success => console.log(true));
                 createTodoStack();
             }

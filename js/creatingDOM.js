@@ -71,6 +71,7 @@ const creatingProjects = () => {
 
     data.map(obj => {
         let div = document.createElement('div');
+        let div2 = document.createElement('div');
         let h5 = document.createElement('h5');
         let p = document.createElement('p');
 
@@ -78,10 +79,11 @@ const creatingProjects = () => {
         let date = document.createElement('p');
 
         parentDiv.appendChild(div);
-        div.appendChild(h5);
-        div.appendChild(p);
+        div.appendChild(div2);
+        div2.appendChild(h5);
+        div2.appendChild(p);
         div.appendChild(img);
-        div.appendChild(date);
+        div2.appendChild(date);
         h5.appendChild(document.createTextNode(obj.title));
         p.appendChild(document.createTextNode(obj.des));
         img.setAttribute('src', 'img/delete-icon.png');

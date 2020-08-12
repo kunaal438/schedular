@@ -22,7 +22,7 @@ let isForUpdate = false;
 
 checkBtn.addEventListener('click', () => {
     let user = JSON.parse(localStorage.getItem('user'));
-    if(!isForUpdate){
+    if (!isForUpdate) {
         if (currentLocation.includes('note')) {
             const noteForm = document.querySelector('.notes-area').value;
             if (noteForm.length) {
@@ -41,18 +41,18 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
                     });
-                
-                    addingDataToLocalStorage('notes', data);
-                    formInputsValueToNull();
-                    creatingNotes();
-                    navigateToViewAfterCreating(navbarlinks[1], 1);
+
+                addingDataToLocalStorage('notes', data);
+                formInputsValueToNull();
+                creatingNotes();
+                navigateToViewAfterCreating(navbarlinks[1], 1);
             }
         } else if (currentLocation.includes('schedule')) {
             const schedule = document.querySelector('#schedule').value;
             const date = document.querySelector('#schedule-date').value;
             const time = document.querySelector('#schedule-time').value;
-    
-            if(schedule.length && date.length && time.length){
+
+            if (schedule.length && date.length && time.length) {
                 let data = {
                     schedule: schedule,
                     date: date,
@@ -70,17 +70,17 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
                     });
-                    addingDataToLocalStorage('schedules', data);
-                    formInputsValueToNull();
-                    creatingSchedules();
-                    navigateToViewAfterCreating(navbarlinks[2], 2);
+                addingDataToLocalStorage('schedules', data);
+                formInputsValueToNull();
+                creatingSchedules();
+                navigateToViewAfterCreating(navbarlinks[2], 2);
             }
-        } else if(currentLocation.includes('project')){
+        } else if (currentLocation.includes('project')) {
             const title = document.querySelector('#title').value;
             const description = document.querySelector('#description').value;
             const date = document.querySelector('#date').value;
-    
-            if(title.length && description.length && date.length){
+
+            if (title.length && description.length && date.length) {
                 let data = {
                     title: title,
                     date: date,
@@ -98,13 +98,13 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
                     })
-                    addingDataToLocalStorage('projects', data);
-                    formInputsValueToNull();
-                    creatingProjects();
-                    navigateToViewAfterCreating(navbarlinks[3], 3);
+                addingDataToLocalStorage('projects', data);
+                formInputsValueToNull();
+                creatingProjects();
+                navigateToViewAfterCreating(navbarlinks[3], 3);
             }
         }
-    } else{
+    } else {
         if (currentLocation.includes('note')) {
             const noteForm = document.querySelector('.notes-area').value;
             if (noteForm.length) {
@@ -124,23 +124,23 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
                     });
-                    let arr = JSON.parse(localStorage.getItem('notes'));
-                    arr.reverse();
-                    arr.splice(originalValueThatHasToUpdate[1], 1);
-                    arr.reverse();
-                    localStorage.setItem('notes', JSON.stringify(arr));
-                    addingDataToLocalStorage('notes', data);
-                    formInputsValueToNull();
-                    creatingNotes();
-                    navigateToViewAfterCreating(navbarlinks[1], 1);
-                    originalValueThatHasToUpdate = [];
+                let arr = JSON.parse(localStorage.getItem('notes'));
+                arr.reverse();
+                arr.splice(originalValueThatHasToUpdate[1], 1);
+                arr.reverse();
+                localStorage.setItem('notes', JSON.stringify(arr));
+                addingDataToLocalStorage('notes', data);
+                formInputsValueToNull();
+                creatingNotes();
+                navigateToViewAfterCreating(navbarlinks[1], 1);
+                originalValueThatHasToUpdate = [];
             }
         } else if (currentLocation.includes('schedule')) {
             const schedule = document.querySelector('#schedule').value;
             const date = document.querySelector('#schedule-date').value;
             const time = document.querySelector('#schedule-time').value;
-    
-            if(schedule.length && date.length && time.length){
+
+            if (schedule.length && date.length && time.length) {
                 let data = {
                     old_schedule: originalValueThatHasToUpdate[0].schedule,
                     old_date: originalValueThatHasToUpdate[0].date,
@@ -160,22 +160,22 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
                     });
-                    let arr = JSON.parse(localStorage.getItem('schedules'));
-                    arr.reverse();
-                    arr.splice(originalValueThatHasToUpdate[1], 1);
-                    arr.reverse();
-                    localStorage.setItem('schedules', JSON.stringify(arr));
-                    addingDataToLocalStorage('schedules', data);
-                    formInputsValueToNull();
-                    creatingSchedules();
-                    navigateToViewAfterCreating(navbarlinks[2], 2);
+                let arr = JSON.parse(localStorage.getItem('schedules'));
+                arr.reverse();
+                arr.splice(originalValueThatHasToUpdate[1], 1);
+                arr.reverse();
+                localStorage.setItem('schedules', JSON.stringify(arr));
+                addingDataToLocalStorage('schedules', data);
+                formInputsValueToNull();
+                creatingSchedules();
+                navigateToViewAfterCreating(navbarlinks[2], 2);
             }
-        } else if(currentLocation.includes('project')){
+        } else if (currentLocation.includes('project')) {
             const title = document.querySelector('#title').value;
             const description = document.querySelector('#description').value;
             const date = document.querySelector('#date').value;
-    
-            if(title.length && description.length && date.length){
+
+            if (title.length && description.length && date.length) {
                 let data = {
                     old_title: originalValueThatHasToUpdate[0].title,
                     title: title,
@@ -194,15 +194,42 @@ checkBtn.addEventListener('click', () => {
                         arr.push(data);
                         localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
                     })
-                    let arr = JSON.parse(localStorage.getItem('projects'));
-                    arr.reverse();
-                    arr.splice(originalValueThatHasToUpdate[1], 1);
-                    arr.reverse();
-                    localStorage.setItem('projects', JSON.stringify(arr));
-                    addingDataToLocalStorage('projects', data);
-                    formInputsValueToNull();
-                    creatingProjects();
-                    navigateToViewAfterCreating(navbarlinks[3], 3);
+                if (data.old_title !== data.title) {
+                    let storage = JSON.parse(localStorage.getItem('todo'));
+
+                    storage.map(obj => {
+                        if (obj.title === data.old_title) {
+                            obj.title = data.title;
+                        }
+                    })
+
+                    fetch('http://schedular-app-438.herokuapp.com/todo-update', {
+                        method: 'post',
+                        headers: new Headers({ 'Content-Type': 'application/json' }),
+                        body: JSON.stringify({
+                            title: data.old_title,
+                            email: user.email,
+                            new_title: data.title
+                        })
+                    })
+                        .then(res => res.json())
+                        .catch(err => {
+                            let arr = JSON.parse(localStorage.getItem('hastofetchprojects'));
+                            arr.push(data);
+                            localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
+                        })
+
+                    localStorage.setItem('todo', JSON.stringify(storage));
+                }
+                let arr = JSON.parse(localStorage.getItem('projects'));
+                arr.reverse();
+                arr.splice(originalValueThatHasToUpdate[1], 1);
+                arr.reverse();
+                localStorage.setItem('projects', JSON.stringify(arr));
+                addingDataToLocalStorage('projects', data);
+                formInputsValueToNull();
+                creatingProjects();
+                navigateToViewAfterCreating(navbarlinks[3], 3);
             }
         }
     }
@@ -212,11 +239,11 @@ checkBtn.addEventListener('click', () => {
 const addingDataToLocalStorage = (key, data) => {
     let stored_data = JSON.parse(localStorage.getItem(key)); // [  { data } ]
 
-    if(stored_data !== null){
+    if (stored_data !== null) {
         stored_data.push(data);
 
         localStorage.setItem(key, JSON.stringify(stored_data));
-    } else{
+    } else {
         localStorage.setItem(key, JSON.stringify([data]));
     }
 }
@@ -233,13 +260,13 @@ const navigateToViewAfterCreating = (item, index) => {
         let view = document.querySelector(`.${obj}`);
         view.classList.remove('upview');
     })
-    
+
     bottomBar.style.height = null;
-            bottomBar.style.display = 'block';
-            addBtn.style.display = 'block';
-            addOpt.style.display = null;
-            addOverlay.style.display = null;
-            formTopBar.style.display = null;
+    bottomBar.style.display = 'block';
+    addBtn.style.display = 'block';
+    addOpt.style.display = null;
+    addOverlay.style.display = null;
+    formTopBar.style.display = null;
 
     let view = document.querySelector(`.${views[index]}`);
     view.classList.add('upview');

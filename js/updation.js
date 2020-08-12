@@ -12,7 +12,7 @@ const updateEvent = (type) => {
     } else if (type === 'schedules') {
         stacks = [...document.querySelectorAll(`.schedule-view .schedule .left`)];
     } else {
-        stacks = [...document.querySelectorAll(`.project-view .project-box`)];
+        stacks = [...document.querySelectorAll(`.project-view .project-box div`)];
     }
 
     // console.log(stacks);
@@ -46,15 +46,15 @@ const updateEvent = (type) => {
                     let view = document.querySelector(`.${obj}`);
                     view.classList.remove('upview');
                 })
+                let title = document.querySelector('.project-todo .title');
+                title.innerHTML = originalValueThatHasToUpdate[0].title;
                 let view = document.querySelector(`.${views[4]}`);
                 view.classList.add('upview');
                 downBar.style.display = 'flex';
                 currentLocation = 'todo';
                 addBtn.style.display = 'none';
                 routeHeader.innerHTML = `Todo`;
-                let title = document.querySelector('.project-todo .title');
                 // console.log(title.innerHTML);
-                title.innerHTML = originalValueThatHasToUpdate[0].title;
                 createTodoStack();
                 todoview = true;
 
