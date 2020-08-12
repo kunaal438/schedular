@@ -120,9 +120,9 @@ checkBtn.addEventListener('click', () => {
                 })
                     .then(res => res.json())
                     .catch(err => {
-                        let arr = JSON.parse(localStorage.getItem('hastofetchnotes'));
+                        let arr = JSON.parse(localStorage.getItem('hastuopdatenotes'));
                         arr.push(data);
-                        localStorage.setItem('hastofetchnotes', JSON.stringify(arr));
+                        localStorage.setItem('hastuopdatenotes', JSON.stringify(arr));
                     });
                 let arr = JSON.parse(localStorage.getItem('notes'));
                 arr.reverse();
@@ -156,9 +156,9 @@ checkBtn.addEventListener('click', () => {
                 })
                     .then(res => res.json())
                     .catch(err => {
-                        let arr = JSON.parse(localStorage.getItem('hastofetchschedules'));
+                        let arr = JSON.parse(localStorage.getItem('hastoupdateschedule'));
                         arr.push(data);
-                        localStorage.setItem('hastofetchschedules', JSON.stringify(arr));
+                        localStorage.setItem('hastoupdateschedule', JSON.stringify(arr));
                     });
                 let arr = JSON.parse(localStorage.getItem('schedules'));
                 arr.reverse();
@@ -190,9 +190,9 @@ checkBtn.addEventListener('click', () => {
                 })
                     .then(res => res.json())
                     .catch(err => {
-                        let arr = JSON.parse(localStorage.getItem('hastofetchprojects'));
+                        let arr = JSON.parse(localStorage.getItem('hastoupdateprojects'));
                         arr.push(data);
-                        localStorage.setItem('hastofetchprojects', JSON.stringify(arr));
+                        localStorage.setItem('hastoupdateprojects', JSON.stringify(arr));
                     })
                 if (data.old_title !== data.title) {
                     let storage = JSON.parse(localStorage.getItem('todo'));

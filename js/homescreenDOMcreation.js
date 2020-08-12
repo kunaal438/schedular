@@ -147,7 +147,7 @@ const homeScreenDOMCreation = () => {
                 p.appendChild(document.createTextNode(all_projects[i].des));
                 img.setAttribute('src', 'img/delete-icon.png');
                 img.setAttribute('alt', 'delete icon');
-                img.setAttribute('class', 'delete-icon');
+                img.setAttribute('class', 'home-projects-delete-icon');
                 date.appendChild(document.createTextNode(`lat date :- ${all_projects[i].date}`))
 
                 div.className = 'project-box';
@@ -166,4 +166,7 @@ const homeScreenDOMCreation = () => {
             }
         }
     }
+    appendingHomeDeleteBtnEvent('home-notes');
+    appendingHomeDeleteBtnEvent('home-schedules');
+    appendingHomeDeleteBtnEvent('home-projects');
 }

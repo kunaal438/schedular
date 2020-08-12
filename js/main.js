@@ -49,22 +49,8 @@ function homeViewSetup() {
     topbar.style.display = 'flex';
     navbar.style.display = 'flex';
     addBtn.style.display = 'block';
-    let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
-    let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
-    let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
-    // console.log(is_any_notes);
-    if (!is_any_notes.length && !is_any_schedules.length && !is_any_projects.length) {
-        checkForEmpty(`empty inbox`);
-    } else {
-        removeEmptyScreen();
-        homeScreenDOMCreation();
-        let view = document.querySelector(`.${views[0]}`);
-        view.classList.add('upview');
-    }
-    checkingfornotesinsertion();
-    checkingforschedulesinsertion();
-    checkingforprojectsinsertion();
-    checkingfortodoinsertion();
+    checkingforempty();
+    checkforsyncing();
     let note = JSON.parse(localStorage.getItem('notes'));
     if (note !== null) {
         creatingNotes();
@@ -84,105 +70,22 @@ function homeViewSetup() {
     // appendingDeleteBtnEvent('projects')
 }
 
+const checkforsyncing = () => {
+    checkingfornotesinsertion();
+    checkingfornotesdel();
+    checkingfornotesupdate();
+    checkingforschedulesinsertion();
+    checkingforscheduleupdate();
+    checkingforscheduledel();
+    checkingforprojectsinsertion();
+    checkingforprojectsdel();
+    checkingforprojectupdate();
+    checkingfortodoinsertion();
+    checkingfortododel();
+}
 
 
 //  fetching on the startup
-
-const checkingfornotesinsertion = () => {
-    let note = JSON.parse(localStorage.getItem('hastofetchnotes'));
-    if (note === null) {
-        localStorage.setItem('hastofetchnotes', JSON.stringify([]));
-    } else {
-        if (note.length) {
-            note.map((obj, i) => {
-                fetch('http://schedular-app-438.herokuapp.com/notes', {
-                    method: 'post',
-                    headers: new Headers({ 'Content-Type': 'application/json' }),
-                    body: JSON.stringify(obj)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (i === note.length - 1) {
-                            localStorage.setItem('hastofetchnotes', JSON.stringify([]));
-                        }
-                    })
-                    .catch(err => console.log(err));
-            })
-        }
-    }
-}
-
-const checkingfortodoinsertion = () => {
-    let todo = JSON.parse(localStorage.getItem('hastofetchtodo'));
-    if (todo === null) {
-        localStorage.setItem('hastofetchtodo', JSON.stringify([]));
-    } else {
-        if (todo.length) {
-            todo.map((obj, i) => {
-                fetch('http://schedular-app-438.herokuapp.com/insert-todo', {
-                    method: 'post',
-                    headers: new Headers({ 'Content-Type': 'application/json' }),
-                    body: JSON.stringify(obj)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (i === todo.length - 1) {
-                            localStorage.setItem('hastofetchtodo', JSON.stringify([]));
-                        }
-                    })
-                    .catch(err => console.log(err));
-            })
-        }
-    }
-}
-
-const checkingforschedulesinsertion = () => {
-    let schedule = JSON.parse(localStorage.getItem('hastofetchschedules'));
-    if (schedule === null) {
-        localStorage.setItem('hastofetchschedules', JSON.stringify([]));
-    } else {
-        if (schedule.length) {
-            schedule.map((obj, i) => {
-                fetch('http://schedular-app-438.herokuapp.com/schedules', {
-                    method: 'post',
-                    headers: new Headers({ 'Content-Type': 'application/json' }),
-                    body: JSON.stringify(obj)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (i === schedule.length - 1) {
-                            localStorage.setItem('hastofetchschedules', JSON.stringify([]));
-                        }
-                    })
-                    .catch(err => console.log(err));
-            })
-        }
-    }
-}
-
-const checkingforprojectsinsertion = () => {
-    let project = JSON.parse(localStorage.getItem('hastofetchprojects'));
-    if (project === null) {
-        localStorage.setItem('hastofetchprojects', JSON.stringify([]));
-    } else {
-        if (project.length) {
-            project.map((obj, i) => {
-                fetch('http://schedular-app-438.herokuapp.com/projects', {
-                    method: 'post',
-                    headers: new Headers({ 'Content-Type': 'application/json' }),
-                    body: JSON.stringify(obj)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (i === project.length - 1) {
-                            localStorage.setItem('hastofetchprojects', JSON.stringify([]));
-                        }
-                    })
-                    .catch(err => console.log(err));
-            })
-        }
-    }
-}
 
 const checkForEmpty = (data) => {
     const emptyView = document.querySelector('.empty-view');
@@ -202,4 +105,20 @@ const checkForEmpty = (data) => {
 const removeEmptyScreen = () => {
     const emptyView = document.querySelector('.empty-view');
     emptyView.classList.remove('upview-empty');
+}
+
+function checkingforempty() {
+    let is_any_notes = JSON.parse(localStorage.getItem(`notes`));
+    let is_any_schedules = JSON.parse(localStorage.getItem(`schedules`));
+    let is_any_projects = JSON.parse(localStorage.getItem(`projects`));
+    // console.log(is_any_notes);
+    if (!is_any_notes.length && !is_any_schedules.length && !is_any_projects.length) {
+        checkForEmpty(`empty inbox`);
+    }
+    else {
+        removeEmptyScreen();
+        homeScreenDOMCreation();
+        let view = document.querySelector(`.${views[0]}`);
+        view.classList.add('upview');
+    }
 }
