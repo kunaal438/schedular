@@ -8,7 +8,7 @@ const appendingDeleteBtnEvent = (type) => {
     }
 
 
-    console.log(delete_btns);
+    // console.log(delete_btns);
 
     delete_btns.map((item, index) => {
         item.addEventListener('click', () => {
@@ -17,13 +17,33 @@ const appendingDeleteBtnEvent = (type) => {
             let sortedArr = [];
 
             if (type === 'todo') {
-                arr = arr.filter(obj => {
-                    if (obj.title === originalValueThatHasToUpdate[0].title) {
-                        sortedArr.push(obj);
-                    } else {
-                        return obj;
-                    }
-                })
+                if (downBarNavigation[0].className === 'active') {
+                    // not-done;
+                    arr = arr.filter(obj => {
+                        if (obj.title === originalValueThatHasToUpdate[0].title) {
+                            if (obj.status !== 'done') {
+                                sortedArr.push(obj);
+                            } else {
+                                return obj;
+                            }
+                        } else {
+                            return obj;
+                        }
+                    })
+                } else {
+                    // done
+                    arr = arr.filter(obj => {
+                        if (obj.title === originalValueThatHasToUpdate[0].title) {
+                            if (obj.status === 'done') {
+                                sortedArr.push(obj);
+                            } else {
+                                return obj;
+                            }
+                        } else {
+                            return obj;
+                        }
+                    })
+                }
                 sortedArr.reverse();
                 delArr.push(sortedArr[index]);
                 sortedArr.splice(index, 1);
@@ -126,7 +146,11 @@ const appendingDeleteBtnEvent = (type) => {
                         localStorage.setItem('hastodeltodo', JSON.stringify(a));
                     })
                 // .then(success => console.log(true));
-                createTodoStack();
+                if (downBarNavigation[0].className === 'active') {
+                    createTodoStack('not-done');
+                } else {
+                    createTodoStack('done');
+                }
             }
         })
     })
@@ -147,7 +171,7 @@ const appendingHomeDeleteBtnEvent = (type) => {
             arr.reverse();
 
             localStorage.setItem(split[1], JSON.stringify(arr));
-            
+
             if (split[1] === 'notes') {
                 let data = {
                     note: delArr[0].note,

@@ -81,6 +81,7 @@ const checkforsyncing = () => {
     checkingforprojectsdel();
     checkingforprojectupdate();
     checkingfortodoinsertion();
+    checkingfortodoupdate();
     checkingfortododel();
 }
 

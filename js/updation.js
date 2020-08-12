@@ -15,13 +15,13 @@ const updateEvent = (type) => {
         stacks = [...document.querySelectorAll(`.project-view .project-box div`)];
     }
 
-    if(type === 'home-notes'){
+    if (type === 'home-notes') {
         stacks = [...document.querySelectorAll(`.home-view .notes div`)];
         type = 'notes';
-    } else if(type === 'home-schedules'){
+    } else if (type === 'home-schedules') {
         stacks = [...document.querySelectorAll(`.home-view .schedule div`)];
         type = 'schedules';
-    } else if(type === 'home-projects'){
+    } else if (type === 'home-projects') {
         stacks = [...document.querySelectorAll(`.home-view .project-box div`)];
         type = 'projects';
     }
@@ -70,7 +70,7 @@ const updateEvent = (type) => {
                 addBtn.style.display = 'none';
                 routeHeader.innerHTML = `Todo`;
                 // console.log(title.innerHTML);
-                createTodoStack();
+                createTodoStack('not-done');
                 todoview = true;
 
 
@@ -120,13 +120,61 @@ const updateEvent = (type) => {
                             })
 
                         addingDataToLocalStorage('todo', data);
-                        createTodoStack();
+                        createTodoStack('not-done');
                         inputValue.value = '';
                     } else {
                         console.log(false);
                     }
                 })
             }
+        })
+    })
+}
+
+const doneTodoEvent = () => {
+    let all_checks = [...document.querySelectorAll('.todo-stack div .check-todo')];
+
+    // console.log(all_checks);
+    all_checks.map((item, index) => {
+        item.addEventListener('click', () => {
+            let arr = JSON.parse(localStorage.getItem('todo'));
+            let sortArr = [];
+
+            arr = arr.filter(obj => {
+                if (obj.title === originalValueThatHasToUpdate[0].title) {
+                    if (obj.status === 'not-done') {
+                        sortArr.push(obj);
+                    } else {
+                        return obj;
+                    }
+                } else {
+                    return obj;
+                }
+            })
+            sortArr.reverse();
+            sortArr[index].status = 'done';
+            sortArr.reverse();
+            // console.log(sortArr);    
+            sortArr.map(obj => arr.push(obj))
+            localStorage.setItem('todo', JSON.stringify(arr));
+
+            fetch('http://schedular-app-438.herokuapp.com/todo-done', {
+                method: 'post',
+                headers: new Headers({ 'Content-Type': 'application/json' }),
+                body: JSON.stringify({
+                    title: sortArr[index].title,
+                    todo: sortArr[index].todo,
+                    email: sortArr[index].email,
+                })
+            })
+                .then(res => res.json)
+                .catch(err => {
+                    let a = JSON.parse(localStorage.getItem('hastoupdatetodo'));
+                    a.push(data)
+                    localStorage.setItem('hastoupdatetodo', JSON.stringify(a));
+                });
+
+            createTodoStack('not-done');
         })
     })
 }

@@ -100,18 +100,26 @@ const creatingProjects = () => {
     updateEvent('projects');
 }
 
-const createTodoStack = () => {
+const createTodoStack = (type) => {
     let parentDiv = document.querySelector('.project-todo');
 
     let allDivs = [...document.querySelectorAll('.project-todo .todo-stack')];
     allDivs.map(item => item.remove());
 
     let data = JSON.parse(localStorage.getItem('todo'));
+    // console.log(data);
     let arr = [];
 
     data.map(obj => {
         if (obj.title === originalValueThatHasToUpdate[0].title) {
-            arr.push(obj);
+                if(type === 'done'){
+                    if(obj.status === 'done'){
+                        arr.push(obj);
+                    }
+                }
+                else if (obj.status !== 'done'){
+                    arr.push(obj);
+                }
         }
     })
     arr.reverse();
@@ -127,19 +135,27 @@ const createTodoStack = () => {
             parentDiv.appendChild(div);
             div.appendChild(p);
             p.appendChild(document.createTextNode(obj.todo));
+            
             div.appendChild(btn_box);
             btn_box.appendChild(del);
-            btn_box.appendChild(check);
+            if(type !== 'done'){
+                btn_box.appendChild(check);
+            }
     
             del.setAttribute('src', 'img/delete-icon.png');
             del.setAttribute('class', 'delete-todo');
     
-            check.setAttribute('src', 'img/check.png');
+            if(type !== 'done'){
+                check.setAttribute('src', 'img/check.png');
             check.setAttribute('class', 'check-todo');
+            }
     
             div.className = 'todo-stack';
         })
     }
     
     appendingDeleteBtnEvent('todo');
+    if(type !== 'done'){
+        doneTodoEvent();
+    }
 }

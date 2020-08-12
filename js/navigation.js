@@ -56,6 +56,7 @@ navbarlinks.map((item, index) => {
         originalValueThatHasToUpdate = [];
         isForUpdate = false;
         resetTodo();
+        downBarNavigation[0].click();
         if (index !== 0) {
             checkingforexistence(index);
         } else {
@@ -249,3 +250,26 @@ const resetTodo = () => {
     isForUpdate = false;
     todoview = false;
 }
+
+
+let downBarNavigation = [...document.querySelectorAll('.down_bar p')];
+
+downBarNavigation.map((item, index) => {
+    item.addEventListener('click', () => {
+        let head = document.querySelector('.todo-view .heading');
+        let inp = document.querySelector('.todo-view .todo_input');
+        if(index === 0){
+            head.style.display = null;
+            inp.style.display = null;
+            downBarNavigation.map(obj => obj.classList.remove('active'));
+            item.classList.add('active');
+            createTodoStack('not-done');
+        } else {
+            head.style.display = 'none';
+            inp.style.display = 'none';
+            downBarNavigation.map(obj => obj.classList.remove('active'));
+            item.classList.add('active');
+            createTodoStack('done');
+        }
+    })
+})

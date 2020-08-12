@@ -102,6 +102,34 @@ const checkingfortodoinsertion = () => {
     }
 }
 
+const checkingfortodoupdate = () => {
+    let todo = JSON.parse(localStorage.getItem('hastoupdatetodo'));
+    if (todo === null) {
+        localStorage.setItem('hastoupdatetodo', JSON.stringify([]));
+    } else {
+        if (todo.length) {
+            todo.map((obj, i) => {
+                fetch('http://schedular-app-438.herokuapp.com/todo-done', {
+                    method: 'post',
+                    headers: new Headers({ 'Content-Type': 'application/json' }),
+                    body: JSON.stringify({
+                        title: obj.title,
+                        todo: obj.todo,
+                        email: obj.email,
+                    })
+                })
+                    .then(res => res.json)
+                    .then(data => {
+                        if (i === todo.length - 1) {
+                            localStorage.setItem('hastoupdatetodo', JSON.stringify([]));
+                        }
+                    })
+                    .catch(err => console.log(err));
+            })
+        }
+    }
+}
+
 const checkingfortododel = () => {
     let todo = JSON.parse(localStorage.getItem('hastodeltodo'));
     if (todo === null) {
